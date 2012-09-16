@@ -7,7 +7,7 @@ use lib File::Spec->catdir(dirname(__FILE__), 'extlib', 'lib', 'perl5');
 use lib File::Spec->catdir(dirname(__FILE__), 'lib');
 use Amon2::Lite;
 use JSON;
-use Furl;
+use YouTubeVideo;
 
 our $VERSION = '0.01';
 
@@ -28,22 +28,21 @@ get '/api/site' => sub {
     my $c = shift;
 
     my $url = $c->req->param('url') || '';
-    my @ids = ();
-    my $status;
+    my $ids = [];
+    my $status = '';
     # TODO cache
     if ( $url ) {
-        my $furl = Furl->new;
-        my $res = $furl->get($url);
-        $status = $res->status;
-        die $res->status_line unless $res->is_success;
-        @ids = ($res->content =~ m{http://www\.youtube\.com/watch\?v=([a-zA-Z0-9\-_]+)&}sg);
+        my $result = YouTubeVideo::fetch_by_url($url);
+        $ids = [ map { {id => $_} } @{ $result->{ids} } ];
+        $status = $result->{status};
     }
-    return $c->render_json({ video_ids => encode_json(\@ids), status => $status });
+    return $c->render_json({ video_ids => $ids, status => $status });
 };
 
 get '/api/video' => sub {
     my $c = shift;
 
+    # get youtube video info
 };
 
 # load plugins
@@ -60,22 +59,40 @@ __DATA__
 <title>PetaTube</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-<script src="[% uri_for('/static/js/main.js') %]"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
 <script src="[% uri_for('/static/js/lib/underscore.js') %]"></script>
 <script src="[% uri_for('/static/js/lib/backbone.js') %]"></script>
 <script src="[% uri_for('/static/js/app.js') %]"></script>
+<script src="[% uri_for('/static/js/model/video.js') %]"></script>
+<script src="[% uri_for('/static/js/collection/videos.js') %]"></script>
+<script src="[% uri_for('/static/js/view/search.js') %]"></script>
+<script src="[% uri_for('/static/js/view/video.js') %]"></script>
+<script src="[% uri_for('/static/js/view/videos.js') %]"></script>
 <link rel="stylesheet" href="[% uri_for('/static/css/main.css') %]">
 </head>
 <body>
 <div class="container">
-  <header><h1>PetaTube</h1></header>
-  <section class="row">
-    YouTubeの動画があるページのURLを貼ってね<br />
-    <form action="/" method="GET">
-      <input type="text" name="url" value="[% target_url %]"><input type="submit" value="検索">
-    </form>
+  <header>
+    <h1>PetaTube</h1>
+  </header>
+  <section id="play-video">
+    <div id="video"></div>
+    <div id="input-url">
+        <form action="#" method="GET">
+          <input type="text" size="50" name="url" value="" placeholder="YouTubeの動画があるページのURLを貼ってね">
+          <input type="submit" value="検索">
+        </form>
+    </div>
+    <div id="recommend">
+        <a href="/?http://matome.naver.jp/odai/2132876130063084301">『邦楽ロックバンド 解散ライブの動画』まとめ</a>
+    </div>
   </section>
-  <footer>Powered by <a href="http://amon.64p.org/">Amon2::Lite</a></footer>
+  <section id="video-list">
+  </section>
+  <footer>
+    <span>&copy; koba04</span>
+    <span>Powered by <a href="http://amon.64p.org/">Amon2::Lite</a></span>
+  </footer>
 </div>
 </body>
 </html>

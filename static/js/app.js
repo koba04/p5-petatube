@@ -5,19 +5,24 @@ window.PetaTube = {
 };
 
 jQuery(function($) {
+"use strict";
 
-var match = window.location.search.match(/\?(https?:\/\/.+)/);
+var videos = new PetaTube.Collection.Videos();
+// initialize view
+new PetaTube.View.Search({
+  videos: videos
+});
+new PetaTube.View.Video({
+  videos: videos
+});
+//new PetaTube.View.Videos({
+//  collection: videos
+//});
+
+var match = window.location.search.match(/\?(https?.+)/);
 if ( match ) {
   var url = match[1];
-  $.ajax({
-    url: '/api/site',
-    dataType: "json",
-    data: { url: url }
-  }).done(function(data) {
-    console.dir(data);
-  }).fail(function() {
-    console.log("error");
-  });
+  videos.fetchByUrl(url);
 }
 
 });
