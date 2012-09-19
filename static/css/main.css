@@ -66,18 +66,86 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 /* line 4, ../../compass/sass/main.scss */
 body {
   background-color: #DD6369;
-}
-/* line 8, ../../compass/sass/main.scss */
-body div.container {
   margin: 10px auto;
   width: 840px;
 }
-/* line 13, ../../compass/sass/main.scss */
-body div.container header {
-  height: 60px;
+/* line 10, ../../compass/sass/main.scss */
+body input {
+  height: 2em;
+  padding: 2px 10px;
+  font-size: 1em;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
 }
 /* line 16, ../../compass/sass/main.scss */
-body div.container header h1 {
+body input[type="text"] {
+  width: 600px;
+}
+/* line 20, ../../compass/sass/main.scss */
+body input[type="submit"] {
+  color: #FFF;
+  background-color: #DD6369;
+  text-shadow: 2px 2px 2px black;
+}
+/* line 26, ../../compass/sass/main.scss */
+body input[type="button"] {
+  color: #FFF;
+  background-color: #DD6369;
+  text-shadow: 2px 2px 2px black;
+}
+/* line 35, ../../compass/sass/main.scss */
+body section#about-modal {
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+/* line 43, ../../compass/sass/main.scss */
+body section#about-modal:target {
+  display: block;
+}
+/* line 46, ../../compass/sass/main.scss */
+body section#about-modal:target div {
+  position: relative;
+  font-size: 1.5em;
+  line-hight: 100%;
+  margin: 80px auto;
+  padding: 5px;
+  background-color: #FFF;
+  color: #000;
+  opaticy: 1;
+  width: 840px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  z-index: 10;
+}
+/* line 60, ../../compass/sass/main.scss */
+body section#about-modal:target a {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: fixed;
+  background-color: gray;
+  opacity: 0.9;
+  z-index: 5;
+}
+/* line 75, ../../compass/sass/main.scss */
+body header {
+  height: 60px;
+}
+/* line 78, ../../compass/sass/main.scss */
+body header h1 {
   margin-left: 10px;
   font-size: 3em;
   font-weight: bold;
@@ -85,13 +153,25 @@ body div.container header h1 {
   color: #FAEBE9;
   float: left;
 }
-/* line 24, ../../compass/sass/main.scss */
-body div.container header div.input-url {
-  margin-right: 10px;
-  float: right;
+/* line 87, ../../compass/sass/main.scss */
+body header div#about {
+  height: 60px;
+  margin-right: 20px;
+  padding-top: 30px;
+  text-align: right;
+  font-size: 1.5em;
 }
-/* line 30, ../../compass/sass/main.scss */
-body div.container section#play-video {
+/* line 95, ../../compass/sass/main.scss */
+body header div#about a:link {
+  text-decoration: none;
+  color: #FFF;
+}
+/* line 99, ../../compass/sass/main.scss */
+body header div#about a:visited {
+  color: #FFF;
+}
+/* line 107, ../../compass/sass/main.scss */
+body section#main {
   height: 40%;
   margin: 10px;
   padding: 20px 10px;
@@ -104,40 +184,25 @@ body div.container section#play-video {
   -o-border-radius: 10px;
   border-radius: 10px;
 }
-/* line 39, ../../compass/sass/main.scss */
-body div.container section#play-video div#input-url {
+/* line 116, ../../compass/sass/main.scss */
+body section#main div#input-url {
   margin: 10px 0;
 }
-/* line 43, ../../compass/sass/main.scss */
-body div.container section#play-video input {
-  height: 2em;
-  padding: 2px 10px;
-  font-size: 1em;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px;
+/* line 120, ../../compass/sass/main.scss */
+body section#main div#video-panel {
+  text-align: center;
 }
-/* line 49, ../../compass/sass/main.scss */
-body div.container section#play-video input[type="text"] {
-  width: 600px;
-}
-/* line 53, ../../compass/sass/main.scss */
-body div.container section#play-video input[type="submit"] {
-  color: #FFF;
-  text-shadow: 2px 2px 2px #DDD;
-}
-/* line 60, ../../compass/sass/main.scss */
-body div.container footer {
+/* line 125, ../../compass/sass/main.scss */
+body footer {
   background-color: #DD6369;
   color: #FAEBE9;
 }
-/* line 65, ../../compass/sass/main.scss */
-body div.container footer a:link {
+/* line 130, ../../compass/sass/main.scss */
+body footer a:link {
   text-decoration: none;
+  color: #FFF;
 }
-/* line 68, ../../compass/sass/main.scss */
-body div.container footer a:visited {
+/* line 134, ../../compass/sass/main.scss */
+body footer a:visited {
   color: #FFF;
 }
