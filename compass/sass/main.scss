@@ -1,9 +1,59 @@
 @import "compass/reset";
 @import "compass/css3";
 
+$main-color: #DD6369;
+$base-color: #FAEBE9;
+
+.modal-window {
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+
+    &:target {
+        display: block;
+
+        div {
+            position: relative;
+            font-size: 1.5em;
+            margin: 80px auto;
+            padding: 5px;
+            background-color: #FFF;
+            color: #000;
+            opaticy: 1;
+            width: 840px;
+            @include border-radius(5px);
+            z-index: 10;
+
+            p {
+                margin: 10px;
+                padding: 10px;
+                background-color: $base-color;
+                @include border-radius(10px);
+
+            }
+        }
+
+        a.close-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: fixed;
+            background-color: gray;
+            opacity: 0.9;
+            z-index: 5;
+        }
+    }
+}
+
 body {
 
-    background-color: #DD6369;
+    background-color:$main-color ;
     margin: 10px auto;
     width: 840px;
 
@@ -19,71 +69,42 @@ body {
 
         &[type="submit"] {
             color: #FFF;
-            background-color: #DD6369;
-            text-shadow: 2px 2px 2px black;
+            background-color: $main-color;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px #CCC;
         }
 
         &[type="button"] {
             color: #FFF;
-            background-color: #DD6369;
-            text-shadow: 2px 2px 2px black;
+            background-color: $main-color;
+            text-shadow: 1px 1px 1px #CCC;
         }
 
     }
 
 
-    section#about-modal {
-        display: none;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        position: fixed;
-
-        &:target {
-            display: block;
-
-            div {
-                position: relative;
-                font-size: 1.5em;
-                margin: 80px auto;
-                padding: 5px;
-                background-color: #FFF;
-                color: #000;
-                opaticy: 1;
-                width: 840px;
-                @include border-radius(5px);
-                z-index: 10;
-            }
-
-            a {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                display: block;
-                position: fixed;
-                background-color: gray;
-                opacity: 0.9;
-                z-index: 5;
-            }
-        }
+    section#about {
+        @extend .modal-window;
     }
+    section#recommend {
+        @extend .modal-window;
+    }
+
 
     header {
         height: 60px;
+        color: #FFF;
 
         h1 {
             margin-left: 10px;
             font-size: 3em;
             font-weight: bold;
             text-shadow: 2px 2px 2px #DDD;
-            color: #FAEBE9;
+            color: $base-color;
             float: left;
         }
 
-        div#about {
+        div#menu {
             height: 60px;
             margin-right: 20px;
             padding-top: 30px;
@@ -92,12 +113,14 @@ body {
 
             a {
                 &:link {
-                    text-decoration: none;
                     color: #FFF;
                 }
                 &:visited {
                     color: #FFF;
                 }
+            }
+            span {
+                font-size: 0.7em;
             }
         }
 
@@ -107,7 +130,7 @@ body {
         height: 40%;
         margin: 10px;
         padding: 20px 10px;
-        background-color: #FAEBE9;
+        background-color: $base-color;
         font-size: 1.5em;
         min-height: 200px;
         @include border-radius(10px);
@@ -122,16 +145,18 @@ body {
     }
 
     footer {
-        background-color: #DD6369;
-        color: #FAEBE9;
+        background-color: $main-color;
+        color: $base-color;
 
         a {
             &:link {
-                text-decoration: none;
+                color: $base-color;
+            }
+            &:hover {
                 color: #FFF;
             }
             &:visited {
-                color: #FFF;
+                color: $base-color;
             }
         }
     }

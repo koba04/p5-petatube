@@ -39,10 +39,16 @@ get '/api/site' => sub {
     return $c->render_json({ video_ids => $ids, status => $status });
 };
 
-get '/api/video' => sub {
+get '/api/video/{id}' => sub {
     my $c = shift;
-
+    my ($m) = @_;
+    my $video_id = $m->{id} || '';
+    my $res = {};
     # get youtube video info
+    if ( $video_id ) {
+        $res = YouTubeVideo::fetch_by_id($video_id);
+    }
+    return $c->render_json($res);
 };
 
 # load plugins
@@ -73,22 +79,41 @@ __DATA__
 <body>
 <header>
 <h1>PetaTube</h1>
-<div id="about">
-  <a href="javascript:window.location='http://localhost:5000?' + window.location;">Peta</a>(bookmaklet)&nbsp;/&nbsp;
-  <a href="#about-modal">about</a>
+<div id="menu">
+  <a href="#recommend" class="open-modal">recommend</a>
+  <a href="#about" class="open-modal">about</a>
+  <a href="javascript:window.location='http://localhost:5000?' + window.location;">peta</a><span>(bookmaklet)</span>
 </div>
 </header>
-<section id="about-modal">
-  <a href="#" id="close-modal"></a>
+<section id="about">
+  <a href="#" class="close-modal"></a>
   <div>
+    <h1>PetaTubeとは?</h1>
+    <h2>ペタっとURL貼るだけ</h2>
     <p>
       YouTubeの動画が貼ってあるページのURLをペタっと貼り付けると<br />
       そのページにある再生可能な動画を連続再生することが出来るだけのサービスです
     </p>
+    <h2>スマートフォンもOK</h2>
     <p>
       Flash非搭載なiPhoneでも動作します<br />
       Peta(bookmarklet)をブックマークして動画のあるページで押すとそのページの動画を再生することが出来ます
     </p>
+    <h2>ブックマークレットで簡単Play</h2>
+    <p>
+      メニューにある「Peta」をブックマークしておくことで、YouTubeの動画があるページでブックマークをクリックするだけで再生出来ます
+    </p>
+    <h2>注意点</h2>
+    <p>
+      URLの指定のされ方によっては動画が取得出来ないことがあります
+    </p>
+  </div>
+</section>
+<section id="recommend">
+  <a href="#" class="close-modal"></a>
+  <div>
+    <h1>おすすめリンク</h1>
+    <p><a href="/?http://matome.naver.jp/odai/2132876130063084301">『邦楽ロックバンド 解散ライブの動画』まとめ</a></p>
   </div>
 </section>
 <section id="main">
@@ -104,16 +129,13 @@ __DATA__
   <div id="input-url">
     <form action="#" method="GET">
       <input type="text" size="50" name="url" value="" placeholder="YouTubeの動画があるページのURLを貼ってね">
-      <input type="submit" value="再生">
+      <input type="submit" value="play">
     </form>
-  </div>
-  <div id="recommend">
-    <a href="/?http://matome.naver.jp/odai/2132876130063084301">『邦楽ロックバンド 解散ライブの動画』まとめ</a>
   </div>
   <div id="video-list"></div>
 </section>
 <footer>
-  <span>&copy; koba04</span>
+  <span>&copy; <a href="http://about.me/koba04">koba04</a></span>
   <span>Powered by <a href="http://amon.64p.org/">Amon2::Lite</a></span>
 </footer>
 </body>

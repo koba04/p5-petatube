@@ -25,6 +25,7 @@ PetaTube.Collection.Videos = Backbone.Collection.extend({
     }
     var video = this.getCurrentModel();
     if ( video ) {
+      // video.fetch();
       return video.id;
     }
   },

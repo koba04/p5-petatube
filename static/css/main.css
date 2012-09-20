@@ -63,41 +63,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/* line 4, ../../compass/sass/main.scss */
-body {
-  background-color: #DD6369;
-  margin: 10px auto;
-  width: 840px;
-}
-/* line 10, ../../compass/sass/main.scss */
-body input {
-  height: 2em;
-  padding: 2px 10px;
-  font-size: 1em;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px;
-}
-/* line 16, ../../compass/sass/main.scss */
-body input[type="text"] {
-  width: 600px;
-}
-/* line 20, ../../compass/sass/main.scss */
-body input[type="submit"] {
-  color: #FFF;
-  background-color: #DD6369;
-  text-shadow: 2px 2px 2px black;
-}
-/* line 26, ../../compass/sass/main.scss */
-body input[type="button"] {
-  color: #FFF;
-  background-color: #DD6369;
-  text-shadow: 2px 2px 2px black;
-}
-/* line 35, ../../compass/sass/main.scss */
-body section#about-modal {
+/* line 7, ../../compass/sass/main.scss */
+.modal-window, body section#about, body section#recommend {
   display: none;
   top: 0;
   left: 0;
@@ -105,15 +72,14 @@ body section#about-modal {
   height: 100%;
   position: fixed;
 }
-/* line 43, ../../compass/sass/main.scss */
-body section#about-modal:target {
+/* line 15, ../../compass/sass/main.scss */
+.modal-window:target, body section#about:target, body section#recommend:target {
   display: block;
 }
-/* line 46, ../../compass/sass/main.scss */
-body section#about-modal:target div {
+/* line 18, ../../compass/sass/main.scss */
+.modal-window:target div, body section#about:target div, body section#recommend:target div {
   position: relative;
   font-size: 1.5em;
-  line-hight: 100%;
   margin: 80px auto;
   padding: 5px;
   background-color: #FFF;
@@ -127,8 +93,19 @@ body section#about-modal:target div {
   border-radius: 5px;
   z-index: 10;
 }
-/* line 60, ../../compass/sass/main.scss */
-body section#about-modal:target a {
+/* line 30, ../../compass/sass/main.scss */
+.modal-window:target div p, body section#about:target div p, body section#recommend:target div p {
+  margin: 10px;
+  padding: 10px;
+  background-color: #faebe9;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+}
+/* line 39, ../../compass/sass/main.scss */
+.modal-window:target a.close-modal, body section#about:target a.close-modal, body section#recommend:target a.close-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -140,42 +117,81 @@ body section#about-modal:target a {
   opacity: 0.9;
   z-index: 5;
 }
-/* line 75, ../../compass/sass/main.scss */
+
+/* line 54, ../../compass/sass/main.scss */
+body {
+  background-color: #dd6369;
+  margin: 10px auto;
+  width: 840px;
+}
+/* line 60, ../../compass/sass/main.scss */
+body input {
+  height: 2em;
+  padding: 2px 10px;
+  font-size: 1em;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+/* line 66, ../../compass/sass/main.scss */
+body input[type="text"] {
+  width: 600px;
+}
+/* line 70, ../../compass/sass/main.scss */
+body input[type="submit"] {
+  color: #FFF;
+  background-color: #dd6369;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #CCC;
+}
+/* line 77, ../../compass/sass/main.scss */
+body input[type="button"] {
+  color: #FFF;
+  background-color: #dd6369;
+  text-shadow: 1px 1px 1px #CCC;
+}
+/* line 94, ../../compass/sass/main.scss */
 body header {
   height: 60px;
+  color: #FFF;
 }
-/* line 78, ../../compass/sass/main.scss */
+/* line 98, ../../compass/sass/main.scss */
 body header h1 {
   margin-left: 10px;
   font-size: 3em;
   font-weight: bold;
   text-shadow: 2px 2px 2px #DDD;
-  color: #FAEBE9;
+  color: #faebe9;
   float: left;
 }
-/* line 87, ../../compass/sass/main.scss */
-body header div#about {
+/* line 107, ../../compass/sass/main.scss */
+body header div#menu {
   height: 60px;
   margin-right: 20px;
   padding-top: 30px;
   text-align: right;
   font-size: 1.5em;
 }
-/* line 95, ../../compass/sass/main.scss */
-body header div#about a:link {
-  text-decoration: none;
+/* line 115, ../../compass/sass/main.scss */
+body header div#menu a:link {
   color: #FFF;
 }
-/* line 99, ../../compass/sass/main.scss */
-body header div#about a:visited {
+/* line 118, ../../compass/sass/main.scss */
+body header div#menu a:visited {
   color: #FFF;
 }
-/* line 107, ../../compass/sass/main.scss */
+/* line 122, ../../compass/sass/main.scss */
+body header div#menu span {
+  font-size: 0.7em;
+}
+/* line 129, ../../compass/sass/main.scss */
 body section#main {
   height: 40%;
   margin: 10px;
   padding: 20px 10px;
-  background-color: #FAEBE9;
+  background-color: #faebe9;
   font-size: 1.5em;
   min-height: 200px;
   -webkit-border-radius: 10px;
@@ -184,25 +200,28 @@ body section#main {
   -o-border-radius: 10px;
   border-radius: 10px;
 }
-/* line 116, ../../compass/sass/main.scss */
+/* line 138, ../../compass/sass/main.scss */
 body section#main div#input-url {
   margin: 10px 0;
 }
-/* line 120, ../../compass/sass/main.scss */
+/* line 142, ../../compass/sass/main.scss */
 body section#main div#video-panel {
   text-align: center;
 }
-/* line 125, ../../compass/sass/main.scss */
+/* line 147, ../../compass/sass/main.scss */
 body footer {
-  background-color: #DD6369;
-  color: #FAEBE9;
+  background-color: #dd6369;
+  color: #faebe9;
 }
-/* line 130, ../../compass/sass/main.scss */
+/* line 152, ../../compass/sass/main.scss */
 body footer a:link {
-  text-decoration: none;
+  color: #faebe9;
+}
+/* line 155, ../../compass/sass/main.scss */
+body footer a:hover {
   color: #FFF;
 }
-/* line 134, ../../compass/sass/main.scss */
+/* line 158, ../../compass/sass/main.scss */
 body footer a:visited {
-  color: #FFF;
+  color: #faebe9;
 }
