@@ -1,8 +1,10 @@
 @import "compass/reset";
 @import "compass/css3";
 
-$main-color: #DD6369;
+$main-color: #D74A51;
 $base-color: #FAEBE9;
+$base-font-color: #5C4033;
+$base-width: 840px;
 
 .modal-window {
     display: none;
@@ -20,19 +22,54 @@ $base-color: #FAEBE9;
             font-size: 1.5em;
             margin: 80px auto;
             padding: 5px;
-            background-color: #FFF;
-            color: #000;
+            background-color: $main-color;
+            color: #FFF;
             opaticy: 1;
-            width: 840px;
+            width: $base-width;
             @include border-radius(5px);
             z-index: 10;
 
-            p {
-                margin: 10px;
+            h1 {
+                margin: 20px;
+                font-weight: bold;
+                font-size: 1.5em;
+            }
+
+            dd {
+                margin: 10px 10px 20px 10px;
+                padding: 10px;
+                color: $base-font-color;
+                background-color: $base-color;
+                font-size: 1em;
+                line-height: 120%;
+                @include border-radius(10px);
+            }
+
+            dt {
+                margin-left: 1.5em;
+                display: list-item;
+                list-style-type: circle;
+            }
+
+            ul {
                 padding: 10px;
                 background-color: $base-color;
                 @include border-radius(10px);
+            }
+            li {
+                margin: 10px 10px 20px 1.5em;
+                color: $base-font-color;
+                font-size: 1em;
+                list-style-type: circle;
+            }
 
+            a {
+                &:link {
+                    color: $base-font-color;
+                }
+                &:visited {
+                    color: $base-font-color;
+                }
             }
         }
 
@@ -55,7 +92,7 @@ body {
 
     background-color:$main-color ;
     margin: 10px auto;
-    width: 840px;
+    width: $base-width;
 
     input {
         height: 2em;
@@ -158,6 +195,10 @@ body {
             &:visited {
                 color: $base-color;
             }
+        }
+
+        span.tweet {
+            margin-left: 10px;
         }
     }
 

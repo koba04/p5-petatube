@@ -80,8 +80,8 @@ __DATA__
 <header>
 <h1>PetaTube</h1>
 <div id="menu">
-  <a href="#recommend" class="open-modal">recommend</a>
-  <a href="#about" class="open-modal">about</a>
+  <a href="#recommend" class="open-modal">recommend</a>&nbsp;
+  <a href="#about" class="open-modal">about</a>&nbsp;
   <a href="javascript:window.location='http://localhost:5000?' + window.location;">peta</a><span>(bookmaklet)</span>
 </div>
 </header>
@@ -89,31 +89,36 @@ __DATA__
   <a href="#" class="close-modal"></a>
   <div>
     <h1>PetaTubeとは?</h1>
-    <h2>ペタっとURL貼るだけ</h2>
-    <p>
-      YouTubeの動画が貼ってあるページのURLをペタっと貼り付けると<br />
-      そのページにある再生可能な動画を連続再生することが出来るだけのサービスです
-    </p>
-    <h2>スマートフォンもOK</h2>
-    <p>
-      Flash非搭載なiPhoneでも動作します<br />
-      Peta(bookmarklet)をブックマークして動画のあるページで押すとそのページの動画を再生することが出来ます
-    </p>
-    <h2>ブックマークレットで簡単Play</h2>
-    <p>
-      メニューにある「Peta」をブックマークしておくことで、YouTubeの動画があるページでブックマークをクリックするだけで再生出来ます
-    </p>
-    <h2>注意点</h2>
-    <p>
-      URLの指定のされ方によっては動画が取得出来ないことがあります
-    </p>
+    <dl>
+      <dt>ペタっとURL貼るだけ</dt>
+      <dd>
+        YouTubeの動画が貼ってあるページのURLをペタっと貼り付けると<br />
+        そのページにある再生可能な動画を連続再生することが出来るだけのサービスです
+      </dd>
+      <dt>スマートフォンもOK</dt>
+      <dd>
+        Flash非搭載なiPhoneでも動作します<br />
+        Peta(bookmarklet)をブックマークして動画のあるページで押すとそのページの動画を再生することが出来ます
+      </dd>
+      <dt>ブックマークレットで簡単Play</dt>
+      <dd>
+        メニューにある「peta」をブックマークしておくことで、YouTubeの動画があるページでブックマークをクリックするだけで再生出来ます
+      </dd>
+      <dt>注意点</dt>
+      <dd>
+        URLの指定のされ方によっては動画が取得出来ないことがあります
+      </dd>
+    </dl>
   </div>
 </section>
 <section id="recommend">
   <a href="#" class="close-modal"></a>
   <div>
-    <h1>おすすめリンク</h1>
-    <p><a href="/?http://matome.naver.jp/odai/2132876130063084301">『邦楽ロックバンド 解散ライブの動画』まとめ</a></p>
+    <h1>おすすめ</h1>
+    <ul>
+      <li><a href="/?http://matome.naver.jp/odai/2132876130063084301">『邦楽ロックバンド 解散ライブの動画』まとめ</a></li>
+      <li><a href="/?http://matome.naver.jp/odai/2132876130063084301">『邦楽ロックバンド 解散ライブの動画』まとめ</a></li>
+    </ul>
   </div>
 </section>
 <section id="main">
@@ -137,6 +142,10 @@ __DATA__
 <footer>
   <span>&copy; <a href="http://about.me/koba04">koba04</a></span>
   <span>Powered by <a href="http://amon.64p.org/">Amon2::Lite</a></span>
+  <span class="tweet">
+    <a href="https://twitter.com/intent/tweet?screen_name=koba04&text=http%3A%2F%2Fpetatube.koba04.com%2F%20" class="twitter-mention-button" data-lang="ja" data-related="koba04">Tweet to @koba04</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  </span>
 </footer>
 </body>
 </html>
