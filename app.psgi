@@ -8,20 +8,42 @@ use lib File::Spec->catdir(dirname(__FILE__), 'lib');
 use Amon2::Lite;
 use JSON;
 use YouTubeVideo;
+use WebService::YouTube::Lite;
 
 our $VERSION = '0.01';
+my $youtube = WebService::YouTube::Lite->new;
 
 # put your configuration here
 sub load_config {
     my $c = shift;
 
     my $mode = $c->mode_name || 'development';
-    return {};
+    return {
+        'Text::Xslate' => {
+            syntax => 'Kolon',
+        },
+    };
 }
 
 get '/' => sub {
     my $c = shift;
-    return $c->render('index.tt');
+
+    my $recommends = [
+        {
+            title   => "『邦楽ロックバンド 解散ライブの動画』まとめ",
+            url     => "http://matome.naver.jp/odai/2132876130063084301",
+        },
+        {
+            title   => "http://blog.livedoor.jp/kinisoku/archives/3401781.html",
+            url     => "【動画大量】UKロックのおすすめバンド貼って行こうぜ！！！",
+        },
+        {
+            title   => "邦楽ロックバンドNo.1決定戦",
+            url     => "http://onsoku.info/archives/51585586.html",
+        },
+    ];
+
+    return $c->render('index.tt', { recommends => $recommends });
 };
 
 get '/api/site' => sub {
@@ -32,13 +54,13 @@ get '/api/site' => sub {
     my $status = '';
     # TODO cache
     if ( $url ) {
-        my $result = YouTubeVideo::fetch_by_url($url);
+        my $result = $youtube->extract_video_ids($url);
         $ids = [ map { {id => $_} } @{ $result->{ids} } ];
-        $status = $result->{status};
     }
-    return $c->render_json({ video_ids => $ids, status => $status });
+    return $c->render_json({ video_ids => $ids });
 };
 
+# for fetch of backbone model
 get '/api/video/{id}' => sub {
     my $c = shift;
     my ($m) = @_;
@@ -46,7 +68,7 @@ get '/api/video/{id}' => sub {
     my $res = {};
     # get youtube video info
     if ( $video_id ) {
-        $res = YouTubeVideo::fetch_by_id($video_id);
+        $res = $youtube->fetch_by_id($video_id);
     }
     return $c->render_json($res);
 };
@@ -65,16 +87,15 @@ __DATA__
 <title>PetaTube</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
-<script src="[% uri_for('/static/js/lib/underscore.js') %]"></script>
-<script src="[% uri_for('/static/js/lib/backbone.js') %]"></script>
-<script src="[% uri_for('/static/js/app.js') %]"></script>
-<script src="[% uri_for('/static/js/model/video.js') %]"></script>
-<script src="[% uri_for('/static/js/collection/videos.js') %]"></script>
-<script src="[% uri_for('/static/js/view/search.js') %]"></script>
-<script src="[% uri_for('/static/js/view/video.js') %]"></script>
-<script src="[% uri_for('/static/js/view/videos.js') %]"></script>
-<link rel="stylesheet" href="[% uri_for('/static/css/main.css') %]">
+<script src="<: uri_for('/static/js/lib/underscore.js') :>"></script>
+<script src="<: uri_for('/static/js/lib/backbone.js') :>"></script>
+<script src="<: uri_for('/static/js/app.js') :>"></script>
+<script src="<: uri_for('/static/js/model/video.js') :>"></script>
+<script src="<: uri_for('/static/js/collection/videos.js') :>"></script>
+<script src="<: uri_for('/static/js/view/search.js') :>"></script>
+<script src="<: uri_for('/static/js/view/video.js') :>"></script>
+<script src="<: uri_for('/static/js/view/videos.js') :>"></script>
+<link rel="stylesheet" href="<: uri_for('/static/css/main.css') :>">
 </head>
 <body>
 <header>
@@ -82,7 +103,7 @@ __DATA__
 <div id="menu">
   <a href="#recommend" class="open-modal">recommend</a>&nbsp;
   <a href="#about" class="open-modal">about</a>&nbsp;
-  <a href="javascript:window.location='http://localhost:5000?' + window.location;">peta</a><span>(bookmaklet)</span>
+  <a href="javascript:window.location='http://petatube.koba04.com/?' + window.location;">peta</a><span>(bookmaklet)</span>
 </div>
 </header>
 <section id="about">
@@ -116,8 +137,9 @@ __DATA__
   <div>
     <h1>おすすめ</h1>
     <ul>
-      <li><a href="/?http://matome.naver.jp/odai/2132876130063084301">『邦楽ロックバンド 解散ライブの動画』まとめ</a></li>
-      <li><a href="/?http://blog.livedoor.jp/kinisoku/archives/3401781.html">【動画大量】UKロックのおすすめバンド貼って行こうぜ！！！</a></li>
+    : for $recommends -> $recommend {
+      <li><a href="/?<: $recommend.url :>"><: $recommend.title :></a></li>
+    : }
     </ul>
   </div>
 </section>
