@@ -6,8 +6,6 @@ use File::Basename;
 use lib File::Spec->catdir(dirname(__FILE__), 'extlib', 'lib', 'perl5');
 use lib File::Spec->catdir(dirname(__FILE__), 'lib');
 use Amon2::Lite;
-use JSON;
-use YouTubeVideo;
 use WebService::YouTube::Lite;
 
 our $VERSION = '0.01';
@@ -145,6 +143,7 @@ __DATA__
 </section>
 <section id="main">
   <div id="play-video">
+    <div id="video-info"></div>
     <div id="video"></div>
     <div id="video-panel"></div>
     <script type="text/x-tmpl" id="tmpl-button">

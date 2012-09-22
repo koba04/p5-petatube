@@ -33,6 +33,20 @@ PetaTube.View.Video = Backbone.View.extend({
     if ( !videoId ) {
       return;
     }
+    // fetch info by api
+    // XXX 
+    var video = this.videos.current();
+    if ( video.get('title') ) {
+      this.$el.find("#video-info").text(video.get('title'));
+    } else {
+      var self = this;
+      video.fetch({
+        success: function() {
+          self.$el.find("#video-info").text(video.get('title'));
+        }
+      });
+    }
+
     if ( this.player ) {
         this.player.loadVideoById(videoId);
     } else {
@@ -41,7 +55,6 @@ PetaTube.View.Video = Backbone.View.extend({
     var tmpl = $('#tmpl-button').html();
     var $panel = _.template(tmpl, { current: this.videos.currentIndex + 1, total: this.videos.length });
     this.$el.find("#video-panel").html($panel);
-
   },
   initSwf: function(videoId) {
     var self = this;
@@ -67,7 +80,10 @@ PetaTube.View.Video = Backbone.View.extend({
             }
           },
           'onError': function(e) {
+            var removeId = self.videos.current().id;
             self.play(self.videos.next());
+            self.videos.remove(removeId);
+            self.videos.prev();
           }
         }
       });

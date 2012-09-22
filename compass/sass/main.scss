@@ -171,6 +171,7 @@ body {
         background-color: $base-color;
         font-size: 1.5em;
         min-height: 200px;
+        color: $base-font-color;
         @include border-radius(10px);
 
         div#input-url {
@@ -179,6 +180,9 @@ body {
 
         div#video-panel {
             text-align: center;
+        }
+
+        div#video-info {
         }
     }
 
