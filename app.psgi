@@ -117,7 +117,7 @@ __DATA__
     <h1>おすすめ</h1>
     <ul>
       <li><a href="/?http://matome.naver.jp/odai/2132876130063084301">『邦楽ロックバンド 解散ライブの動画』まとめ</a></li>
-      <li><a href="/?http://matome.naver.jp/odai/2132876130063084301">『邦楽ロックバンド 解散ライブの動画』まとめ</a></li>
+      <li><a href="/?http://blog.livedoor.jp/kinisoku/archives/3401781.html">【動画大量】UKロックのおすすめバンド貼って行こうぜ！！！</a></li>
     </ul>
   </div>
 </section>
