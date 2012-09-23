@@ -5,36 +5,29 @@ PetaTube.View.Video = Backbone.View.extend({
   el: "#play-video",
   initialize: function(args) {
     this.videos = args.videos;
-    this.videos.on("reset", this.resetPlay, this);
+    this.videos.on("reset", this.play, this);
   },
   events: {
     "click #prev-button": "prev",
     "click #next-button": "next",
   },
+  // play next video
   next: function() {
-    var nextId = this.videos.next();
-    if ( nextId ) {
-      this.play(nextId);
-    }
+    this.videos.next();
+    this.play();
   },
+  // play prev video
   prev: function() {
-    var prevId = this.videos.prev();
-    if ( prevId ) {
-      this.play(prevId);
-    }
+    this.videos.prev();
+    this.play();
   },
-  resetPlay: function(videos) {
-    var video = videos.at(this.videos.currentIndex);
-    if ( video ) {
-      this.play(video.id);
-    }
+  // skip can't play video
+  skip: function() {
+      this.videos.skip();
+      this.play();
   },
-  play : function(videoId) {
-    if ( !videoId ) {
-      return;
-    }
-    // fetch info by api
-    // XXX 
+  // play current video
+  play : function() {
     var video = this.videos.current();
     if ( video.get('title') ) {
       this.$el.find("#video-info").text(video.get('title'));
@@ -47,17 +40,20 @@ PetaTube.View.Video = Backbone.View.extend({
       });
     }
 
-    if ( this.player ) {
-        this.player.loadVideoById(videoId);
-    } else {
-      this.initSwf(videoId);
-    }
+    this.loadPlayer();
     var tmpl = $('#tmpl-button').html();
     var $panel = _.template(tmpl, { current: this.videos.currentIndex + 1, total: this.videos.length });
     this.$el.find("#video-panel").html($panel);
   },
-  initSwf: function(videoId) {
+  loadPlayer: function() {
     var self = this;
+
+    var video = this.videos.current();
+    // already create video player
+    if ( self.player ) {
+      return self.player.loadVideoById(video.id);
+    }
+
     // https://developers.google.com/youtube/iframe_api_reference
     var tag = document.createElement('script');
     tag.src = "//www.youtube.com/iframe_api";
@@ -67,7 +63,7 @@ PetaTube.View.Video = Backbone.View.extend({
       self.player = new YT.Player('video', {
         height: '450',
         width: '800',
-        videoId: videoId,
+        videoId: video.id,
         events: {
           'onReady': function(e) {
             // doesn't play video on iphone.
@@ -76,14 +72,11 @@ PetaTube.View.Video = Backbone.View.extend({
           'onStateChange': function(e) {
             var state = e.data;
             if (state == YT.PlayerState.ENDED) {
-              self.play(self.videos.next());
+              self.next();
             }
           },
           'onError': function(e) {
-            var removeId = self.videos.current().id;
-            self.play(self.videos.next());
-            self.videos.remove(removeId);
-            self.videos.prev();
+            self.skip();
           }
         }
       });

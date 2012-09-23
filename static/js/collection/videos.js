@@ -15,6 +15,7 @@ PetaTube.Collection.Videos = Backbone.Collection.extend({
       self.reset(data.video_ids);
     });
   },
+  // return current model
   current: function() {
     return this.at(this.currentIndex);
   },
@@ -23,19 +24,20 @@ PetaTube.Collection.Videos = Backbone.Collection.extend({
     if ( this.currentIndex >= this.length ) {
       this.currentIndex = 0;
     }
-    var video = this.current();
-    if ( video ) {
-      return video.id;
-    }
   },
   prev: function() {
     --this.currentIndex;
     if ( this.currentIndex < 0 ) {
-      this.currentIndex = this.length;
+      this.currentIndex = this.length - 1;
     }
-    var video = this.current();
-    if ( video ) {
-      return video.id;
+  },
+  // remove can't play video
+  skip: function() {
+    var removeId = this.current().id;
+    this.next();
+    this.remove(removeId);
+    if ( this.currentIndex !== 0 ) {
+      this.prev();
     }
   }
 });

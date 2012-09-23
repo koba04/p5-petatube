@@ -32,8 +32,8 @@ get '/' => sub {
             url     => "http://matome.naver.jp/odai/2132876130063084301",
         },
         {
-            title   => "http://blog.livedoor.jp/kinisoku/archives/3401781.html",
-            url     => "【動画大量】UKロックのおすすめバンド貼って行こうぜ！！！",
+            title   => "【動画大量】UKロックのおすすめバンド貼って行こうぜ！！！",
+            url     => "http://blog.livedoor.jp/kinisoku/archives/3401781.html",
         },
         {
             title   => "邦楽ロックバンドNo.1決定戦",
