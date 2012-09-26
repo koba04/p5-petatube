@@ -83,7 +83,7 @@ __DATA__
 <head>
 <meta charset="utf-8">
 <title>PetaTube</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=900" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 <script src="<: uri_for('/static/js/lib/underscore.js') :>"></script>
 <script src="<: uri_for('/static/js/lib/backbone.js') :>"></script>
