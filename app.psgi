@@ -84,6 +84,7 @@ __DATA__
 <meta charset="utf-8">
 <title>PetaTube</title>
 <meta name="viewport" content="width=900" />
+<meta name="description" content="PetaTubeはYouTubeの動画が貼ってあるページのURLを入れるだけで連続再生出来るサービスです。" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 <script src="<: uri_for('/static/js/lib/underscore.js') :>"></script>
 <script src="<: uri_for('/static/js/lib/backbone.js') :>"></script>
@@ -159,12 +160,23 @@ __DATA__
     </form>
   </div>
   <div id="video-list"></div>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1&appId=346463362115366";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+  <div class="fb-like" data-href="http://petatube.koba04.com/" data-send="true" data-width="450" data-show-faces="true"></div>
 </section>
 <footer>
   <span>&copy; <a href="http://about.me/koba04">koba04</a></span>
   <span>Powered by <a href="http://amon.64p.org/">Amon2::Lite</a></span>
   <span class="tweet">
     <a href="https://twitter.com/intent/tweet?screen_name=koba04&text=http%3A%2F%2Fpetatube.koba04.com%2F%20" class="twitter-mention-button" data-lang="ja" data-related="koba04">Tweet to @koba04</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="koba04" data-lang="ja" data-hashtags="petatube">ツイート</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
   </span>
 </footer>
