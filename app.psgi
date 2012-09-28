@@ -195,12 +195,12 @@ __DATA__
 <footer>
   <span>&copy; <a href="http://about.me/koba04">koba04</a></span>
   <span>Powered by <a href="http://amon.64p.org/">Amon2::Lite</a></span>
-<div class="fb-like" data-href="http://petatube.koba04.com/" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false" data-font="arial"></div>
+  <span class="fb-like" data-href="http://petatube.koba04.com/" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false" data-font="arial"></span>
   <span class="tweet">
     <a href="https://twitter.com/intent/tweet?screen_name=koba04&text=http%3A%2F%2Fpetatube.koba04.com%2F%20" class="twitter-mention-button" data-lang="ja" data-related="koba04">Tweet to @koba04</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-    <a href="https://twitter.com/share" class="twitter-share-button" data-via="koba04" data-lang="ja" data-hashtags="petatube">ツイート</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja" data-hashtags="petatube">ツイート</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
   </span>
 </footer>
 <script>
