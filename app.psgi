@@ -7,9 +7,12 @@ use lib File::Spec->catdir(dirname(__FILE__), 'extlib', 'lib', 'perl5');
 use lib File::Spec->catdir(dirname(__FILE__), 'lib');
 use Amon2::Lite;
 use WebService::YouTube::Lite;
+use PetaTube::Cache;
 
 our $VERSION = '0.01';
 my $youtube = WebService::YouTube::Lite->new;
+my $cache = PetaTube::Cache->new;
+my $cache_version = 1;
 
 # put your configuration here
 sub load_config {
@@ -50,10 +53,11 @@ get '/api/site' => sub {
     my $url = $c->req->param('url') || '';
     my $ids = [];
     my $status = '';
-    # TODO cache
     if ( $url ) {
-        my $result = $youtube->extract_video_ids($url);
-        $ids = [ map { {id => $_} } @{ $result->{ids} } ];
+        $ids = $cache->get_callback("extract_video_ids?$cache_version", sub {
+            my $result = $youtube->extract_video_ids($url);
+            return [ map { {id => $_} } @{ $result->{ids} } ];
+        });
     }
     return $c->render_json({ video_ids => $ids });
 };
@@ -66,7 +70,9 @@ get '/api/video/{id}' => sub {
     my $res = {};
     # get youtube video info
     if ( $video_id ) {
-        $res = $youtube->fetch_by_id($video_id);
+        $res = $cache->get_callback("fetch_by_id?$cache_version", sub {
+            return $youtube->fetch_by_id($video_id);
+        });
     }
     return $c->render_json($res);
 };
