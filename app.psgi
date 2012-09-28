@@ -54,10 +54,10 @@ get '/api/site' => sub {
     my $ids = [];
     my $status = '';
     if ( $url ) {
-        $ids = $cache->get_callback("extract_video_ids?$cache_version", sub {
+        $ids = $cache->get_callback("extract_video_ids?url=$url&v=$cache_version", sub {
             my $result = $youtube->extract_video_ids($url);
             return [ map { {id => $_} } @{ $result->{ids} } ];
-        });
+        }, 60 * 60);
     }
     return $c->render_json({ video_ids => $ids });
 };
@@ -70,9 +70,9 @@ get '/api/video/{id}' => sub {
     my $res = {};
     # get youtube video info
     if ( $video_id ) {
-        $res = $cache->get_callback("fetch_by_id?$cache_version", sub {
+        $res = $cache->get_callback("fetch_by_id?id=$video_id&v=$cache_version", sub {
             return $youtube->fetch_by_id($video_id);
-        });
+        }, 60 * 60 * 24);
     }
     return $c->render_json($res);
 };
