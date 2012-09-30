@@ -42,6 +42,14 @@ get '/' => sub {
             title   => "邦楽ロックバンドNo.1決定戦",
             url     => "http://onsoku.info/archives/51585586.html",
         },
+        {
+            title   => "マジ泣きNujabes超名曲まとめ25",
+            url     => "http://matome.naver.jp/odai/2132589790727181601",
+        },
+        {
+            title   => "ミュージック・ビデオ・アワードの受賞PVを貼っていくスレ【動画】",
+            url     => "http://blog.livedoor.jp/chihhylove/archives/7173110.html",
+        },
     ];
 
     return $c->render('index.tt', { recommends => $recommends });
@@ -74,7 +82,7 @@ get '/api/video/{id}' => sub {
             return $youtube->fetch_by_id($video_id);
         }, 60 * 60 * 24);
     }
-    return $c->render_json($res);
+    return $c->render_json($res || {});
 };
 
 # load plugins
@@ -126,23 +134,23 @@ __DATA__
   <div>
     <h1>PetaTubeとは?</h1>
     <dl>
-      <dt>ペタっとURL貼るだけ</dt>
+      <dt>ペタっとURLを貼るだけ</dt>
       <dd>
         YouTubeの動画が貼ってあるページのURLをペタっと貼り付けると<br />
-        そのページにある再生可能な動画を連続再生することが出来るだけのサービスです
-      </dd>
-      <dt>スマートフォンもOK</dt>
-      <dd>
-        Flash非搭載なiPhoneでも動作します<br />
-        Peta(bookmarklet)をブックマークして動画のあるページで押すとそのページの動画を再生することが出来ます
+        そのページにある再生可能な動画を連続再生することが出来るだけのサービスです<br />
+        URLの指定のされ方によっては動画が取得出来ないことがあります
       </dd>
       <dt>ブックマークレットで簡単Play</dt>
       <dd>
         メニューにある「peta」をブックマークしておくことで、YouTubeの動画があるページでブックマークをクリックするだけで再生出来ます
       </dd>
-      <dt>注意点</dt>
+      <dt>iPhoneでも再生出来ます</dt>
       <dd>
-        URLの指定のされ方によっては動画が取得出来ないことがあります
+        その他はこれから確認します
+      </dd>
+      <dt>more</dt>
+      <dd>
+        <a href="http://d.hatena.ne.jp/koba04/">http://d.hatena.ne.jp/koba04/</a>
       </dd>
     </dl>
   </div>
