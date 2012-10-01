@@ -150,7 +150,7 @@ __DATA__
       </dd>
       <dt>more</dt>
       <dd>
-        <a href="http://d.hatena.ne.jp/koba04/">http://d.hatena.ne.jp/koba04/</a>
+        <a href="http://d.hatena.ne.jp/koba04/20121002/1349103920">http://d.hatena.ne.jp/koba04/20121002/1349103920</a>
       </dd>
     </dl>
   </div>
