@@ -179,7 +179,7 @@ __DATA__
   </div>
   <div id="input-url">
     <form action="#" method="GET">
-      <input type="text" size="50" name="url" value="" placeholder="YouTubeの動画があるページのURLを貼ってね">
+      <input type="text" size="50" name="url" value="" placeholder="YouTubeの動画があるページのURLを貼ってください">
       <input type="submit" value="play">
     </form>
   </div>
