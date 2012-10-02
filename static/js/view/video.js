@@ -31,11 +31,13 @@ PetaTube.View.Video = Backbone.View.extend({
     var video = this.videos.current();
     if ( video.get('title') ) {
       this.$el.find("#video-info").text(video.get('title'));
+      $('title').text(video.get('title') + "(PetaTube)");
     } else {
       var self = this;
       video.fetch({
         success: function() {
           self.$el.find("#video-info").text(video.get('title'));
+          $('title').text(video.get('title') + "(PetaTube)");
         }
       });
     }
