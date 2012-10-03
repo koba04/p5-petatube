@@ -99,6 +99,7 @@ __DATA__
 <title>PetaTube</title>
 <meta name="viewport" content="width=900" />
 <meta name="description" content="PetaTubeはYouTubeの動画が貼ってあるページのURLを入れるだけで連続再生出来るサービスです。" />
+<meta property="fb:admins" content="100001278582922" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 <script src="<: uri_for('/static/js/lib/underscore.js') :>"></script>
 <script src="<: uri_for('/static/js/lib/backbone.js') :>"></script>
