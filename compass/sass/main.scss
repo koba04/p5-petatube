@@ -108,13 +108,13 @@ body {
             color: #FFF;
             background-color: $main-color;
             font-weight: bold;
-            text-shadow: 1px 1px 1px #CCC;
+            text-shadow: 1px 1px 1px #993333;
         }
 
         &[type="button"] {
             color: #FFF;
             background-color: $main-color;
-            text-shadow: 1px 1px 1px #CCC;
+            text-shadow: 1px 1px 1px #993333;
         }
 
     }
@@ -136,7 +136,7 @@ body {
             margin-left: 10px;
             font-size: 3em;
             font-weight: bold;
-            text-shadow: 2px 2px 2px #DDD;
+            text-shadow: 2px 2px 2px #993333;
             color: $base-color;
             float: left;
         }
