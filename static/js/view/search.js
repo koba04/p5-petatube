@@ -11,7 +11,8 @@ PetaTube.View.Search = Backbone.View.extend({
   search: function() {
     var url = this.$el.find("input[name='url']").val();
     if ( url ) {
-      this.videos.fetchByUrl(url);
+      // replace location.search
+      window.location.search = url;
     }
     return false;
   }
