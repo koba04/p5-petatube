@@ -139,6 +139,16 @@ body {
             text-shadow: 2px 2px 2px #993333;
             color: $base-color;
             float: left;
+            a {
+                text-decoration: none;
+                &:link {
+                    color: #FFF;
+                }
+                &:visited {
+                    color: #FFF;
+                }
+            }
+
         }
 
         div#menu {

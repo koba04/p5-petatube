@@ -123,7 +123,7 @@ __DATA__
 </head>
 <body>
 <header>
-<h1>PetaTube</h1>
+<h1><a href="/">PetaTube</a></h1>
 <div id="menu">
   <a href="#recommend" class="open-modal">recommend</a>&nbsp;
   <a href="#about" class="open-modal">about</a>&nbsp;
