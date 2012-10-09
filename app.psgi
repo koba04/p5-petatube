@@ -8,10 +8,10 @@ use lib File::Spec->catdir(dirname(__FILE__), 'lib');
 use Amon2::Lite;
 use WebService::YouTube::Lite;
 use PetaTube::Cache;
+use PetaTube::Hot;
 
 our $VERSION = '0.01';
 my $youtube = WebService::YouTube::Lite->new;
-my $cache = PetaTube::Cache->new;
 my $cache_version = 1;
 
 # put your configuration here
@@ -59,15 +59,15 @@ get '/api/site' => sub {
     my $c = shift;
 
     my $url = $c->req->param('url') || '';
-    my $ids = [];
-    my $status = '';
+    my $result = {};
     if ( $url ) {
-        $ids = $cache->get_callback("extract_video_ids?url=$url&v=$cache_version", sub {
-            my $result = $youtube->extract_video_ids($url);
-            return [ map { {id => $_} } @{ $result->{ids} } ];
+        my $cache = PetaTube::Cache->new;
+        $result = $cache->get_callback("extract_video_ids?url=$url&v=$cache_version", sub {
+            return $youtube->extract_video_ids($url);
         }, 60 * 60);
+        PetaTube::Hot->record($url, $result->{title});
     }
-    return $c->render_json({ video_ids => $ids });
+    return $c->render_json({ video_ids => [ map { {id => $_} } @{ $result->{ids} } ] });
 };
 
 # for fetch of backbone model
@@ -78,6 +78,7 @@ get '/api/video/{id}' => sub {
     my $res = {};
     # get youtube video info
     if ( $video_id ) {
+        my $cache = PetaTube::Cache->new;
         $res = $cache->get_callback("fetch_by_id?id=$video_id&v=$cache_version", sub {
             return $youtube->fetch_by_id($video_id);
         }, 60 * 60 * 24);
