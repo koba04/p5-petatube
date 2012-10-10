@@ -11,8 +11,8 @@ my $cache_version = 1;
 
 sub fetch {
     my $class = shift;
-    my ($limit) = @_;
-    $limit ||= 10;
+    my %arg = @_;
+    my $limit = $arg{limit} ? $arg{limit} : 10;
 
     my $cache = PetaTube::Cache->new;
     my $pages = $cache->get_callback('hot_pages?v='.$cache_version, sub {
@@ -22,7 +22,8 @@ sub fetch {
             $db->search(peta => {}, { order_by => { count => 'DESC' }, limit => 10 })->all
         ];
     }, 60 * 60) || [];
-    return [ splice(shuffle(@$pages), 0, $limit) ];
+    my @shuffled_pages = shuffle @$pages;
+    return [ splice(@shuffled_pages, 0, $limit) ];
 }
 
 sub record {

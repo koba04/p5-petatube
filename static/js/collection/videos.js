@@ -6,7 +6,7 @@ PetaTube.Collection.Videos = Backbone.Collection.extend({
   fetchByUrl: function(url) {
     var self = this;
     $.ajax({
-      url: "/api/site",
+      url: "/api/page",
       dataType: "json",
       data: { url: url }
     }).done(function(data) {

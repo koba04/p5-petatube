@@ -28,34 +28,10 @@ sub load_config {
 
 get '/' => sub {
     my $c = shift;
-
-    my $recommends = [
-        {
-            title   => "『邦楽ロックバンド 解散ライブの動画』まとめ",
-            url     => "http://matome.naver.jp/odai/2132876130063084301",
-        },
-        {
-            title   => "【動画大量】UKロックのおすすめバンド貼って行こうぜ！！！",
-            url     => "http://blog.livedoor.jp/kinisoku/archives/3401781.html",
-        },
-        {
-            title   => "邦楽ロックバンドNo.1決定戦",
-            url     => "http://onsoku.info/archives/51585586.html",
-        },
-        {
-            title   => "マジ泣きNujabes超名曲まとめ25",
-            url     => "http://matome.naver.jp/odai/2132589790727181601",
-        },
-        {
-            title   => "ミュージック・ビデオ・アワードの受賞PVを貼っていくスレ【動画】",
-            url     => "http://blog.livedoor.jp/chihhylove/archives/7173110.html",
-        },
-    ];
-
-    return $c->render('index.tt', { recommends => $recommends });
+    return $c->render('index.tt');
 };
 
-get '/api/site' => sub {
+get '/api/page' => sub {
     my $c = shift;
 
     my $url = $c->req->param('url') || '';
@@ -86,6 +62,13 @@ get '/api/video/{id}' => sub {
     return $c->render_json($res || {});
 };
 
+get '/api/hot' => sub {
+    my $c = shift;
+
+    my $hot_pages = PetaTube::Hot->fetch(limit => 5);
+    return $c->render_json($hot_pages);
+};
+
 # load plugins
 __PACKAGE__->load_plugin('Web::JSON');
 __PACKAGE__->to_app(handle_static => 1);
@@ -106,10 +89,13 @@ __DATA__
 <script src="<: uri_for('/static/js/lib/backbone.js') :>"></script>
 <script src="<: uri_for('/static/js/app.js') :>"></script>
 <script src="<: uri_for('/static/js/model/video.js') :>"></script>
+<script src="<: uri_for('/static/js/model/hot-page.js') :>"></script>
 <script src="<: uri_for('/static/js/collection/videos.js') :>"></script>
+<script src="<: uri_for('/static/js/collection/hot-pages.js') :>"></script>
 <script src="<: uri_for('/static/js/view/search.js') :>"></script>
 <script src="<: uri_for('/static/js/view/video.js') :>"></script>
 <script src="<: uri_for('/static/js/view/videos.js') :>"></script>
+<script src="<: uri_for('/static/js/view/hot-pages.js') :>"></script>
 <link rel="stylesheet" href="<: uri_for('/static/css/main.css') :>">
 <script type="text/javascript">
   var _gaq = _gaq || [];
@@ -126,7 +112,6 @@ __DATA__
 <header>
 <h1><a href="/">PetaTube</a></h1>
 <div id="menu">
-  <a href="#recommend" class="open-modal">recommend</a>&nbsp;
   <a href="#about" class="open-modal">about</a>&nbsp;
   <a href="javascript:window.location='http://petatube.koba04.com/?' + window.location;">peta</a><span>(bookmaklet)</span>
 </div>
@@ -157,17 +142,6 @@ __DATA__
     </dl>
   </div>
 </section>
-<section id="recommend">
-  <a href="#" class="close-modal"></a>
-  <div>
-    <h1>おすすめ</h1>
-    <ul>
-    : for $recommends -> $recommend {
-      <li><a href="/?<: $recommend.url :>"><: $recommend.title :></a></li>
-    : }
-    </ul>
-  </div>
-</section>
 <section id="main">
   <div id="play-video">
     <div id="video-info"></div>
@@ -185,7 +159,9 @@ __DATA__
       <input type="submit" value="play">
     </form>
   </div>
-  <div id="video-list"></div>
+  <div id="hot">
+    <h2>みんなが見たページ</h2>
+  </div>
 </section>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
