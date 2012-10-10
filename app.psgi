@@ -160,7 +160,7 @@ __DATA__
     </form>
   </div>
   <div id="hot">
-    <h2>みんなが見たページ</h2>
+    <h2>みんなが見た動画</h2>
   </div>
 </section>
 <div id="fb-root"></div>
