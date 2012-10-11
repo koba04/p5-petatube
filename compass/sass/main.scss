@@ -186,6 +186,16 @@ body {
             div#play-url {
                 margin: 20px 5px;
                 font-size: 0.8em;
+
+                a {
+                    &:link {
+                        color: $base-font-color;
+                    }
+                    &:visited {
+                        color: $base-font-color;
+                    }
+                }
+
             }
         }
 
