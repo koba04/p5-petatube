@@ -19,7 +19,15 @@ sub fetch {
         my $db = PetaTube::DB->new;
         return [
             map { { url => $_->url, title => $_->title } }
-            $db->search(peta => {}, { order_by => { count => 'DESC' }, limit => 10 })->all
+            $db->search(peta =>
+                {
+                    count => { '>' => 1 },
+                },
+                {
+                    order_by => { count => 'DESC' },
+                    limit => 10
+                }
+            )->all
         ];
     }, 60 * 60) || [];
     my @shuffled_pages = shuffle @$pages;
