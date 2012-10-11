@@ -11,8 +11,10 @@ PetaTube.Collection.Videos = Backbone.Collection.extend({
       data: { url: url }
     }).done(function(data) {
       self.currentIndex = 0;
-      console.dir(data);
+      self.title = data.title;
+      self.url = data.url;
       self.reset(data.video_ids);
+      self.trigger('change:title');
     });
   },
   // return current model

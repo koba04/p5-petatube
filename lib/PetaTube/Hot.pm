@@ -37,7 +37,7 @@ sub record {
     if ( $row ) {
         $row->update({ count => \'count + 1' });
     } else {
-        $db->insert(peta => {
+        $row = $db->insert(peta => {
             digest      => murmur_hash($url),
             url         => $url,
             title       => $title,
@@ -45,6 +45,7 @@ sub record {
             created_at  => \'NOW()',
         });
     }
+    return $row;
 }
 
 1;

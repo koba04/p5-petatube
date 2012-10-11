@@ -36,14 +36,19 @@ get '/api/page' => sub {
 
     my $url = $c->req->param('url') || '';
     my $result = {};
+    my $title = '';
     if ( $url ) {
         my $cache = PetaTube::Cache->new;
         $result = $cache->get_callback("extract_video_ids?url=$url&v=$cache_version", sub {
             return $youtube->extract_video_ids($url);
         }, 60 * 60);
-        PetaTube::Hot->record($url, $result->{title});
+        $title = PetaTube::Hot->record($url, $result->{title})->title;
     }
-    return $c->render_json({ video_ids => [ map { {id => $_} } @{ $result->{ids} } ] });
+    return $c->render_json({
+        video_ids   => [ map { {id => $_} } @{ $result->{ids} } ],
+        url         => $url,
+        title       => $title,
+    });
 };
 
 # for fetch of backbone model
@@ -154,6 +159,7 @@ __DATA__
     </script>
   </div>
   <div id="input-url">
+    <div id="play-url"></div>
     <form action="#" method="GET">
       <input type="text" size="50" name="url" value="" placeholder="YouTubeの動画があるページのURLを貼ってください">
       <input type="submit" value="play">
