@@ -21,7 +21,8 @@ sub fetch {
             map { { url => $_->url, title => $_->title } }
             $db->search(peta =>
                 {
-                    view_count => { '>' => 1 },
+                    title       => { '!=' => '' }, # XXX performance
+                    view_count  => { '>' => 1 },
                     video_count => { '>' => 2 },
                 },
                 {
