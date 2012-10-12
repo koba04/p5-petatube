@@ -27,7 +27,7 @@ sub fetch {
                 },
                 {
                     order_by => { view_count => 'DESC' },
-                    limit => 10
+                    limit => 50
                 }
             )->all
         ];
