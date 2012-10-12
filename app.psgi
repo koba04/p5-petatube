@@ -35,17 +35,18 @@ get '/api/page' => sub {
     my $c = shift;
 
     my $url = $c->req->param('url') || '';
-    my $result = {};
+    my $video_ids = [];
     my $title = '';
     if ( $url ) {
         my $cache = PetaTube::Cache->new;
-        $result = $cache->get_callback("extract_video_ids?url=$url&v=$cache_version", sub {
+        my $result = $cache->get_callback("extract_video_ids?url=$url&v=$cache_version", sub {
             return $youtube->extract_video_ids($url);
         }, 60 * 60);
-        $title = PetaTube::Hot->record($url, $result->{title})->title;
+        $video_ids = $result->{ids};
+        $title = PetaTube::Hot->record($url, $result->{title}, scalar @$video_ids)->title;
     }
     return $c->render_json({
-        video_ids   => [ map { {id => $_} } @{ $result->{ids} } ],
+        video_ids   => [ map { {id => $_} } @$video_ids ],
         url         => $url,
         title       => $title,
     });

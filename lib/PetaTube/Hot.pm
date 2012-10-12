@@ -21,10 +21,11 @@ sub fetch {
             map { { url => $_->url, title => $_->title } }
             $db->search(peta =>
                 {
-                    count => { '>' => 1 },
+                    view_count => { '>' => 1 },
+                    video_count => { '>' => 2 },
                 },
                 {
-                    order_by => { count => 'DESC' },
+                    order_by => { view_count => 'DESC' },
                     limit => 10
                 }
             )->all
@@ -36,20 +37,21 @@ sub fetch {
 
 sub record {
     my $class = shift;
-    my ($url, $title) = @_;
+    my ($url, $title, $video_count) = @_;
 
     return unless $url;
 
     my $db = PetaTube::DB->new;
     my $row = $db->single(peta => { digest => murmur_hash($url), url => $url});
     if ( $row ) {
-        $row->update({ count => \'count + 1' });
+        $row->update({ view_count => \'view_count + 1', video_count => $video_count });
     } else {
         $row = $db->insert(peta => {
             digest      => murmur_hash($url),
             url         => $url,
             title       => $title,
-            count       => 1,
+            view_count  => 1,
+            video_count => $video_count,
             created_at  => \'NOW()',
         });
     }
