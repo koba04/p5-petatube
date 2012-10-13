@@ -8,6 +8,14 @@ $h-color: #CC2D34;
 $base-width: 840px;
 $base-shadow-color: #993333;
 
+a {
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+
+}
+
 .modal-window {
     display: none;
     top: 0;
@@ -137,7 +145,9 @@ body {
             color: $base-color;
             float: left;
             a {
-                text-decoration: none;
+                &:hover {
+                    text-decoration: none;
+                }
                 &:link {
                     color: #FFF;
                 }
