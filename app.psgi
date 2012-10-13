@@ -137,10 +137,6 @@ __DATA__
       <dd>
         メニューにある「peta」をブックマークしておくことで、YouTubeの動画があるページでブックマークをクリックするだけで再生出来ます
       </dd>
-      <dt>iPhoneでも再生出来ます</dt>
-      <dd>
-        その他はこれから確認します
-      </dd>
       <dt>more</dt>
       <dd>
         <a href="http://d.hatena.ne.jp/koba04/20121002/1349103920">http://d.hatena.ne.jp/koba04/20121002/1349103920</a>
