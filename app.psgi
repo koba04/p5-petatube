@@ -6,13 +6,11 @@ use File::Basename;
 use lib File::Spec->catdir(dirname(__FILE__), 'extlib', 'lib', 'perl5');
 use lib File::Spec->catdir(dirname(__FILE__), 'lib');
 use Amon2::Lite;
-use WebService::YouTube::Lite;
-use PetaTube::Cache;
+use PetaTube;
 use PetaTube::Hot;
 
 our $VERSION = '0.01';
-my $youtube = WebService::YouTube::Lite->new;
-my $cache_version = 2;
+my $static_version = 2;
 
 # put your configuration here
 sub load_config {
@@ -28,7 +26,7 @@ sub load_config {
 
 get '/' => sub {
     my $c = shift;
-    return $c->render('index.tt', { static_version => 1 });
+    return $c->render('index.tt', { static_version => $static_version });
 };
 
 get '/api/page' => sub {
@@ -38,10 +36,7 @@ get '/api/page' => sub {
     my $video_ids = [];
     my $title = '';
     if ( $url ) {
-        my $cache = PetaTube::Cache->new;
-        my $result = $cache->get_callback("extract_video_ids?url=$url&v=$cache_version", sub {
-            return $youtube->extract_video_ids($url);
-        }, 60 * 60);
+        my $result = PetaTube->extract_video_ids($url);
         $video_ids = $result->{ids};
         $title = PetaTube::Hot->record($url, $result->{title}, scalar @$video_ids)->title;
     }
@@ -60,10 +55,7 @@ get '/api/video/{id}' => sub {
     my $res = {};
     # get youtube video info
     if ( $video_id ) {
-        my $cache = PetaTube::Cache->new;
-        $res = $cache->get_callback("fetch_by_id?id=$video_id&v=$cache_version", sub {
-            return $youtube->fetch_by_id($video_id);
-        }, 60 * 60 * 24);
+        $res = PetaTube->fetch_video($video_id);
     }
     return $c->render_json($res || {});
 };

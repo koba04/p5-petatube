@@ -7,7 +7,7 @@ use List::Util qw/shuffle/;
 use PetaTube::DB;
 use PetaTube::Cache;
 
-my $cache_version = 2;
+my $cache_version = 3;
 
 sub fetch {
     my $class = shift;
@@ -18,7 +18,7 @@ sub fetch {
     my $pages = $cache->get_callback('hot_pages?v='.$cache_version, sub {
         my $db = PetaTube::DB->new;
         return [
-            map { { url => $_->url, title => $_->title } }
+            map { { url => $_->url, title => $_->title, video_count => $_->video_count } }
             $db->search(peta =>
                 {
                     title       => { '!=' => '' }, # XXX performance

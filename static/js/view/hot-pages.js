@@ -8,9 +8,11 @@ PetaTube.View.HotPages = Backbone.View.extend({
   draw: function(pages) {
     var $list = $('<ul>');
     pages.each(function(page) {
+      // TODO template
       var $li = $('<li>');
       var $a = $('<a>').attr('href', page.petaURL()).text(page.get('title'));
-      $li.append($a);
+      var $span = $('<span class="video_count">').text('(' + page.get('video_count') + 'videos)');
+      $li.append($a).append($span);
       $list.append($li);
     });
     this.$el.append($list);

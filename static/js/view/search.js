@@ -18,7 +18,10 @@ PetaTube.View.Search = Backbone.View.extend({
     return false;
   },
   showTitle: function(data) {
-    this.$el.find('#play-url').empty().append($('<span>').text("by ")).append($('<a>').attr('href', this.videos.url).text(this.videos.title));
+    // TODO template
+    this.$el.find('#play-url').empty().append($('<span>').text("by "))
+      .append($('<a>').attr('href', this.videos.url).text(this.videos.title))
+      .append($('<span class="video_count">').text('(' + this.videos.length + 'videos)'));
   }
 });
 

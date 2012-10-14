@@ -193,6 +193,11 @@ body {
         color: $base-font-color;
         @include border-radius(10px);
 
+        span.video_count {
+            font-size: 0.8em;
+            margin-left: 5px;
+        }
+
         div#input-url {
             margin: 10px 0;
 
