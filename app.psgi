@@ -12,7 +12,7 @@ use PetaTube::Hot;
 
 our $VERSION = '0.01';
 my $youtube = WebService::YouTube::Lite->new;
-my $cache_version = 1;
+my $cache_version = 2;
 
 # put your configuration here
 sub load_config {
