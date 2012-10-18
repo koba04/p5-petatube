@@ -45,7 +45,8 @@ sub record {
     my $db = PetaTube::DB->new;
     my $row = $db->single(peta => { digest => murmur_hash($url), url => $url});
     if ( $row ) {
-        $row->update({ view_count => \'view_count + 1', video_count => $video_count });
+        $row->update({ title => $title, view_count => \'view_count + 1', video_count => $video_count });
+        $row = $row->refetch;
     } else {
         $row = $db->insert(peta => {
             digest      => murmur_hash($url),
