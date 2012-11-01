@@ -10,7 +10,7 @@ use PetaTube;
 use PetaTube::Hot;
 
 our $VERSION = '0.01';
-my $static_version = 2;
+my $static_version = 3;
 
 # put your configuration here
 sub load_config {
@@ -142,9 +142,10 @@ __DATA__
     <div id="video"></div>
     <div id="video-panel"></div>
     <script type="text/x-tmpl" id="tmpl-button">
-      <input type="button" id="prev-button" value="&lt;&lt;">
+      <input type="button" id="prev-button" value="&lt;&lt;" />
       <span class="play-index"><%= current %></span>/<span class="play-index"><%= total %></span>
-      <input type="button" id="next-button" value="&gt;&gt;">
+      <input type="button" id="next-button" value="&gt;&gt;" />
+      <input type="button" id="shuffle-button" value="shuffle" />
     </script>
   </div>
   <div id="input-url">

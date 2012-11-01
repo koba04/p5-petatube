@@ -10,6 +10,7 @@ PetaTube.View.Video = Backbone.View.extend({
   events: {
     "click #prev-button": "prev",
     "click #next-button": "next",
+    "click #shuffle-button": "shuffle"
   },
   // play next video
   next: function() {
@@ -23,8 +24,11 @@ PetaTube.View.Video = Backbone.View.extend({
   },
   // skip can't play video
   skip: function() {
-      this.videos.skip();
-      this.play();
+    this.videos.skip();
+    this.play();
+  },
+  shuffle: function(e) {
+    this.videos.shufflePlay();
   },
   // play current video
   play : function() {

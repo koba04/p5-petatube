@@ -123,6 +123,11 @@ body {
 
     }
 
+    #shuffle-button {
+        margin-left: 1em;
+        font-size: 0.8em;
+    }
+
     a {
         &:link {
             color: $base-link-color;

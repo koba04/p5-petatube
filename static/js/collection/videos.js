@@ -41,6 +41,10 @@ PetaTube.Collection.Videos = Backbone.Collection.extend({
     if ( this.currentIndex !== 0 ) {
       this.prev();
     }
+  },
+  shufflePlay: function() {
+    this.currentIndex = 0;
+    this.reset( this.shuffle() );
   }
 });
 
