@@ -12,16 +12,20 @@ $base-shadow-color: #993333;
 */
 $main-color: #B65F58;
 $highlight-color: #76231D;
+$highlight-font-color: #FFF;
 $base-color: #EED4D2;
-$base-shadow-color: #993333;
+$base-shadow-color: #512723;
 
 $base-width: 840px;
 
 @mixin line-bottom($op1: .2, $op2: .3){
     border-bottom: 1px solid rgba(0, 0, 0, $op1);
-    @include box-shadow(rgba(255, 255, 255, $op2)0 1px 0);
+    @include box-shadow(rgba(255, 255, 255, $op2) 0 1px 0);
 }
 
+html {
+    height: 100%;
+}
 
 a {
     font-weight: bold;
@@ -122,13 +126,13 @@ body {
             color: $base-color;
             background-color: $main-color;
             font-weight: bold;
-            text-shadow: 1px 1px 1px $base-shadow-color;
+            text-shadow: 2px 2px 2px $base-shadow-color;
         }
 
         &[type="button"] {
             color: $base-color;
             background-color: $main-color;
-            text-shadow: 1px 1px 1px $base-shadow-color;
+            text-shadow: 2px 2px 2px $base-shadow-color;
         }
 
     }
@@ -160,11 +164,10 @@ body {
             font-size: 3em;
             font-weight: bold;
             text-shadow: 2px 2px 2px $base-shadow-color;
-            color: $base-color;
             float: left;
             a {
                 &:link, &:visited {
-                    color: $base-color;
+                    color: $highlight-font-color;
                 }
             }
 
@@ -200,6 +203,7 @@ body {
         font-size: 1.5em;
         min-height: 200px;
         color: $highlight-color;
+        @include box-shadow($base-shadow-color 5px 5px 20px);
         @include border-radius(10px);
 
         span.video_count {
