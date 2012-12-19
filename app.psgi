@@ -10,7 +10,7 @@ use PetaTube;
 use PetaTube::Hot;
 
 our $VERSION = '0.01';
-my $static_version = 5;
+my $static_version = 6;
 
 # put your configuration here
 sub load_config {
