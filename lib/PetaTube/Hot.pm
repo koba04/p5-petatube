@@ -7,7 +7,7 @@ use List::Util qw/shuffle/;
 use PetaTube::DB;
 use PetaTube::Cache;
 
-my $cache_version = 3;
+my $cache_version = 4;
 
 sub fetch {
     my $class = shift;
@@ -22,8 +22,8 @@ sub fetch {
             $db->search(peta =>
                 {
                     title       => { '!=' => '' }, # XXX performance
-                    view_count  => { '>' => 1 },
-                    video_count => { '>' => 2 },
+                    view_count  => { '>' => 4 },
+                    video_count => { '>' => 4 },
                 },
                 {
                     order_by => { view_count => 'DESC' },
