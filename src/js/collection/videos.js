@@ -1,4 +1,5 @@
 (function() {
+"use strict";
 
 PetaTube.Collection.Videos = Backbone.Collection.extend({
   currentIndex: 0,

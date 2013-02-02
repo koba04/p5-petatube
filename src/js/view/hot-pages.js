@@ -1,4 +1,5 @@
 (function() {
+"use strict";
 
 PetaTube.View.HotPages = Backbone.View.extend({
   el: "#hot",

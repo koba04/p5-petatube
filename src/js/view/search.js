@@ -1,4 +1,5 @@
 (function() {
+"use strict";
 
 PetaTube.View.Search = Backbone.View.extend({
   el: "#input-url",
