@@ -85,15 +85,7 @@ __DATA__
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 <script src="<: uri_for('/static/js/lib/underscore.js') :>"></script>
 <script src="<: uri_for('/static/js/lib/backbone.js') :>"></script>
-<script src="<: uri_for('/static/js/app.js', { v => $static_version }) :>"></script>
-<script src="<: uri_for('/static/js/model/video.js', { v => $static_version }) :>"></script>
-<script src="<: uri_for('/static/js/model/hot-page.js', { v => $static_version }) :>"></script>
-<script src="<: uri_for('/static/js/collection/videos.js', { v => $static_version }) :>"></script>
-<script src="<: uri_for('/static/js/collection/hot-pages.js', { v => $static_version }) :>"></script>
-<script src="<: uri_for('/static/js/view/search.js', { v => $static_version }) :>"></script>
-<script src="<: uri_for('/static/js/view/video.js', { v => $static_version }) :>"></script>
-<script src="<: uri_for('/static/js/view/videos.js', { v => $static_version }) :>"></script>
-<script src="<: uri_for('/static/js/view/hot-pages.js', { v => $static_version }) :>"></script>
+<script src="<: uri_for('/static/js/petatube.js', { v => $static_version }) :>"></script>
 <link rel="stylesheet" href="<: uri_for('/static/css/main.css', { v => $static_version }) :>">
 <script type="text/javascript">
   var _gaq = _gaq || [];
