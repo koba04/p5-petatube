@@ -11,8 +11,7 @@ module.exports = function(grunt) {
         ],
         tasks: ["js"],
         options: {
-          debounceDelay: 3000,
-          interval: 1000
+          debounceDelay: 3000
         }
       },
       css: {
