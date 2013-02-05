@@ -1,9 +1,8 @@
-(function() {
-"use strict";
+(function () {
+  "use strict";
 
-PetaTube.Model.Video = Backbone.Model.extend({
-  urlRoot: '/api/video'
-});
-
+  PetaTube.Model.Video = Backbone.Model.extend({
+    urlRoot: '/api/video'
+  });
 
 })();

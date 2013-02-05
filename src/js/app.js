@@ -1,5 +1,5 @@
-(function() {
-"use strict";
+(function () {
+  "use strict";
 
   window.PetaTube = {
     Model: {},
@@ -7,7 +7,7 @@
     View: {}
   };
 
-  jQuery(function($) {
+  jQuery(function () {
     var PetaTube = window.PetaTube;
 
     var videos = new PetaTube.Collection.Videos();
@@ -20,7 +20,7 @@
     });
 
     var match = window.location.search.match(/\?(https?.+)/);
-    if ( match ) {
+    if (match) {
       var url = match[1];
       videos.fetchByUrl(url);
     } else {
