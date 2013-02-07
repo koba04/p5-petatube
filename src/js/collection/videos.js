@@ -5,19 +5,18 @@
     currentIndex: 0,
     model: PetaTube.Model.Video,
     fetchByUrl: function (url) {
-      var self = this;
       $.ajax({
         url: "/api/page",
         dataType: "json",
         data: { url: url }
-      }).done(function (data) {
-        self.currentIndex = 0;
-        self.title = data.title;
-        self.url = data.url;
+      }).done($.proxy(function (data) {
+        this.currentIndex = 0;
+        this.title = data.title;
+        this.url = data.url;
         /*jshint camelcase:false  */
-        self.reset(data.video_ids);
-        self.trigger('change:title');
-      });
+        this.reset(data.video_ids);
+        this.trigger('change:title');
+      }, this));
     },
     // return current model
     current: function () {

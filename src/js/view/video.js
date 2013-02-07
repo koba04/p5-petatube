@@ -38,12 +38,11 @@
         this.$el.find("#video-info").text(video.get('title'));
         $('title').text(video.get('title') + "(PetaTube)");
       } else {
-        var self = this;
         video.fetch({
-          success: function () {
-            self.$el.find("#video-info").text(video.get('title'));
+          success: $.proxy(function () {
+            this.$el.find("#video-info").text(video.get('title'));
             $('title').text(video.get('title') + "(PetaTube)");
-          }
+          }, this)
         });
       }
 
@@ -53,12 +52,10 @@
       this.$el.find("#video-panel").html($panel);
     },
     loadPlayer: function () {
-      var self = this;
-
       var video = this.videos.current();
       // already create video player
-      if (self.player) {
-        return self.player.loadVideoById(video.id);
+      if (this.player) {
+        return this.player.loadVideoById(video.id);
       }
 
       // https://developers.google.com/youtube/iframe_api_reference
@@ -66,8 +63,8 @@
       tag.src = "//www.youtube.com/iframe_api";
       var firstScriptTag = document.getElementsByTagName('script')[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-      window.onYouTubeIframeAPIReady = function () {
-        self.player = new YT.Player('video', {
+      window.onYouTubeIframeAPIReady = $.proxy(function () {
+        this.player = new YT.Player('video', {
           height: '450',
           width: '800',
           videoId: video.id,
@@ -76,18 +73,18 @@
               // doesn't play video on iphone.
               // e.target.playVideo()
             },
-            'onStateChange': function (e) {
+            'onStateChange': $.proxy(function (e) {
               var state = e.data;
               if (state === YT.PlayerState.ENDED) {
-                self.next();
+                this.next();
               }
-            },
-            'onError': function () {
-              self.skip();
-            }
+            }, this),
+            'onError': $.proxy(function () {
+              this.skip();
+            }, this)
           }
         });
-      };
+      }, this);
     }
   });
 
