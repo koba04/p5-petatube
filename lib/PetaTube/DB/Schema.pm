@@ -8,5 +8,5 @@ use Teng::Schema::Declare;
 table {
     name 'peta';
     pk 'id';
-    columns qw/id digest url title view_count video_count created_at updated_at/;
+    columns qw/id digest url title view_count video_count thumbnail_video_id created_at updated_at/;
 };
