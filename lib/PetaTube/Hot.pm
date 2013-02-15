@@ -7,7 +7,7 @@ use List::Util qw/shuffle/;
 use PetaTube::DB;
 use PetaTube::Cache;
 
-my $cache_version = 5;
+my $cache_version = 6;
 
 sub fetch {
     my $class = shift;
