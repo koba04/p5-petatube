@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS peta (
     title       VARCHAR(255)        NOT NULL DEFAULT '' COMMENT "ページタイトル",
     view_count  INTEGER UNSIGNED    NOT NULL DEFAULT 0 COMMENT "petaされた回数",
     video_count INTEGER UNSIGNED    NOT NULL DEFAULT 0 COMMENT "含まれている動画の数",
+    thumbnail_video_id VARCHAR(30)  NOT NULL DEFAULT '' COMMENT "サムネイルで表示するvideo id",
     created_at  DATETIME            NOT NULL,
     updated_at  TIMESTAMP           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     INDEX url_digest(digest),

@@ -160,7 +160,7 @@ body {
         color: $base-color;
 
         h1 {
-            margin-left: 10px;
+            margin: 10px 20px;
             font-size: 3em;
             font-weight: bold;
             text-shadow: 2px 2px 2px $base-shadow-color;
@@ -170,7 +170,6 @@ body {
                     color: $highlight-font-color;
                 }
             }
-
         }
 
         div#menu {
@@ -206,13 +205,13 @@ body {
         @include box-shadow($base-shadow-color 5px 5px 20px);
         @include border-radius(10px);
 
-        span.video_count {
+        span.video-count {
             font-size: 0.8em;
             margin-left: 5px;
         }
 
         div#input-url {
-            margin: 10px 0;
+            margin: 10px;
 
             div#play-url {
                 margin: 20px 5px;
@@ -228,14 +227,23 @@ body {
             display: none;
             margin-top: 40px;
             h2 {
-                margin: 20px 15px;
+                margin: 20px 10px;
                 color: $highlight-color;
             }
             li {
                 font-size: 0.8em;
                 margin: 20px 10px;
-                padding-bottom: 5px;
+                padding-bottom: 0;
                 @include line-bottom(0.5, 0.5);
+                @include display-box;
+            }
+            .hot-thumbnail {
+                width: 120px;
+                margin-right: 10px;
+                img {
+                    margin-bottom: 0;
+                    @include box-shadow($base-shadow-color 5px 5px 20px);
+                }
             }
         }
     }
