@@ -38,7 +38,7 @@ get '/api/page' => sub {
     if ( $url ) {
         my $result = PetaTube->extract_video_ids($url);
         $video_ids = $result->{ids};
-        $title = PetaTube::Hot->record($url, $result->{title}, scalar @$video_ids)->title;
+        $title = PetaTube::Hot->record($url, $result->{title}, $video_ids)->title;
     }
     return $c->render_json({
         video_ids   => [ map { {id => $_} } @$video_ids ],
@@ -149,6 +149,19 @@ __DATA__
   </div>
   <div id="hot">
     <h2>みんなが見た動画</h2>
+    <script type="text/x-tmpl" id="tmpl-hot-pages">
+      <a href="<%= petaURL %>">
+      <li>
+        <div class="hot-thumbnail">
+          <img src="<%= thumbnailImagePath %>" alt="<%= title %>" />
+        </div>
+        <div class="hot-link">
+          <%= title %><br />
+          <span class="video-count">(<%= videoCount %>videos)</span>
+        </div>
+      </li>
+      </a>
+    </script>
   </div>
 </section>
 <div id="fb-root"></div>

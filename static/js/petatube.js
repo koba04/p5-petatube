@@ -43,6 +43,9 @@
   PetaTube.Model.HotPage = Backbone.Model.extend({
     petaURL: function () {
       return "/?" + this.get('url');
+    },
+    thumbnailImagePath: function () {
+      return "http://i.ytimg.com/vi/" + this.get('thumbnailVideoId') + "/default.jpg";
     }
   });
 
@@ -139,12 +142,14 @@
     draw: function (pages) {
       var $list = $('<ul>');
       pages.each(function (page) {
-        // TODO template
-        var $li = $('<li>');
-        var $a = $('<a>').attr('href', page.petaURL()).text(page.get('title'));
-        var $span = $('<span class="video_count">').text('(' + page.get('video_count') + 'videos)');
-        $li.append($a).append($span);
-        $list.append($li);
+        var tmpl = $('#tmpl-hot-pages').html();
+        var hot = _.template(tmpl, {
+          title:              page.get('title'),
+          petaURL:            page.petaURL(),
+          videoCount:         page.get('videoCount'),
+          thumbnailImagePath: page.thumbnailImagePath()
+        });
+        $list.append(hot);
       });
       this.$el.append($list);
       this.$el.fadeIn();

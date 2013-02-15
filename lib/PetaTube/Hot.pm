@@ -18,7 +18,7 @@ sub fetch {
     my $pages = $cache->get_callback('hot_pages?v='.$cache_version, sub {
         my $db = PetaTube::DB->new;
         return [
-            map { { url => $_->url, title => $_->title, video_count => $_->video_count } }
+            map { { url => $_->url, title => $_->title, videoCount => $_->video_count, thumbnailVideoId => $_->thumbnail_video_id } }
             $db->search(peta =>
                 {
                     title       => { '!=' => '' }, # XXX performance
@@ -38,22 +38,31 @@ sub fetch {
 
 sub record {
     my $class = shift;
-    my ($url, $title, $video_count) = @_;
+    my ($url, $title, $video_ids) = @_;
 
     return unless $url;
 
     my $db = PetaTube::DB->new;
     my $row = $db->single(peta => { digest => murmur_hash($url), url => $url});
+
+    my %cond = (
+        title               => $title,
+        video_count         => scalar @$video_ids,
+        thumbnail_video_id  => $video_ids->[ int rand @$video_ids],
+    );
+
     if ( $row ) {
-        $row->update({ title => $title, view_count => \'view_count + 1', video_count => $video_count });
+        $row->update({
+            %cond,
+            view_count  => \'view_count + 1',
+        });
         $row = $row->refetch;
     } else {
         $row = $db->insert(peta => {
+            %cond,
             digest      => murmur_hash($url),
             url         => $url,
-            title       => $title,
             view_count  => 1,
-            video_count => $video_count,
             created_at  => \'NOW()',
         });
     }
