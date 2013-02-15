@@ -107,7 +107,7 @@ a {
 
 body {
 
-    @include background-image(linear-gradient(left top, $main-color, $highlight-color));
+    @include background-image(linear-gradient(left, $main-color, $highlight-color));
     margin: 10px auto;
     width: $base-width;
     font-family: sans-serif;
