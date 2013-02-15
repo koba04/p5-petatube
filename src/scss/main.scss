@@ -237,6 +237,9 @@ body {
                 @include line-bottom(0.5, 0.5);
                 @include display-box;
             }
+            .hot-link {
+                width: $base-width - 180px;
+            }
             .hot-thumbnail {
                 width: 120px;
                 margin-right: 10px;

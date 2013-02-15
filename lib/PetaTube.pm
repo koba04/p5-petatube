@@ -9,7 +9,7 @@ use Furl;
 use WebService::YouTube::Lite;
 use PetaTube::Cache;
 
-my $cache_version = 4;
+my $cache_version = 5;
 my $youtube = WebService::YouTube::Lite->new;
 
 sub extract_video_ids {
