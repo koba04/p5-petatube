@@ -10,7 +10,7 @@ use PetaTube;
 use PetaTube::Hot;
 
 our $VERSION = '0.01';
-my $static_version = 12;
+my $static_version = 14;
 
 # put your configuration here
 sub load_config {
@@ -83,10 +83,12 @@ __DATA__
 <meta name="description" content="PetaTubeはYouTubeの動画が貼ってあるページのURLを入れるだけで連続再生出来るサービスです。" />
 <meta property="fb:admins" content="100001278582922" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script src="<: uri_for('/static/js/lib/jquery.powertip-1.1.0.min.js') :>"></script>
 <script src="<: uri_for('/static/js/lib/underscore.js') :>"></script>
 <script src="<: uri_for('/static/js/lib/backbone.js') :>"></script>
 <script src="<: uri_for('/static/js/petatube.min.js', { v => $static_version }) :>"></script>
 <link rel="stylesheet" href="<: uri_for('/static/css/main.css', { v => $static_version }) :>">
+<link rel="stylesheet" href="<: uri_for('/static/css/lib/jquery.powertip.css', { v => $static_version }) :>">
 <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-8875970-3']);
@@ -103,7 +105,7 @@ __DATA__
 <h1><a href="/">PetaTube</a></h1>
 <div id="menu">
   <a href="#about" class="open-modal">about</a>&nbsp;
-  <a href="javascript:window.location='http://petatube.koba04.com/?' + window.location;">peta</a><span>(bookmaklet)</span>
+  <a href="javascript:window.location='http://petatube.koba04.com/?' + window.location;" class="bookmarklet" title="このリンクをブックマークしておくと簡単に連続再生出来ます">peta</a>
 </div>
 </header>
 <section id="about">
@@ -135,7 +137,7 @@ __DATA__
     <div id="video-panel"></div>
     <script type="text/x-tmpl" id="tmpl-button">
       <input type="button" id="prev-button" value="&lt;&lt;" />
-      <span class="play-index"><%= current %></span>/<span class="play-index"><%= total %></span>
+      <span class="play-index"><%= current %>/<%= total %></span>
       <input type="button" id="next-button" value="&gt;&gt;" />
       <input type="button" id="shuffle-button" value="shuffle" />
     </script>

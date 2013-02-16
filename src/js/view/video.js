@@ -50,6 +50,7 @@
       var tmpl = $('#tmpl-button').html();
       var $panel = _.template(tmpl, { current: this.videos.currentIndex + 1, total: this.videos.length });
       this.$el.find("#video-panel").html($panel);
+      this.$el.show();
     },
     loadPlayer: function () {
       var video = this.videos.current();
@@ -65,8 +66,8 @@
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
       window.onYouTubeIframeAPIReady = $.proxy(function () {
         this.player = new YT.Player('video', {
-          height: '450',
-          width: '800',
+          height: '425',
+          width: '760',
           videoId: video.id,
           events: {
             'onReady': function () {

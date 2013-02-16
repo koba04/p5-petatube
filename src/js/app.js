@@ -32,6 +32,9 @@
       hotPages.fetch();
     }
 
+    // tooltip
+    $('.bookmarklet').powerTip();
+
   });
 
 })();
