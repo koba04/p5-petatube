@@ -105,7 +105,7 @@ __DATA__
 <h1><a href="/">PetaTube</a></h1>
 <div id="menu">
   <a href="#about" class="open-modal">about</a>&nbsp;
-  <a href="javascript:window.location='http://petatube.koba04.com/?' + window.location;" class="bookmarklet" title="このリンクをブックマークしておくと簡単に連続再生出来ます">peta</a>
+  <a href="javascript:window.location='http://petatube.koba04.com/?' + window.location;" class="bookmarklet" title="このリンクをブックマークして動画のあるページで押すと簡単に連続再生出来ます">peta</a>
 </div>
 </header>
 <section id="about">
