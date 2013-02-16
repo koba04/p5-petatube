@@ -34,7 +34,7 @@
     }
 
     // tooltip
-    $('.bookmarklet').powerTip();
+    $('.bookmarklet').powerTip({ placement: 's' });
 
   });
 
