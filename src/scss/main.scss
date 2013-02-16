@@ -197,7 +197,7 @@ body {
     section#main {
         height: 40%;
         margin: 5px;
-        padding: 20px 10px;
+        padding: 10px 10px;
         background-color: $base-color;
         font-size: 1.5em;
         min-height: 200px;
@@ -219,13 +219,17 @@ body {
             }
         }
 
-        div#video-panel {
-            text-align: center;
+        div#play-video {
+            padding: 20px;
+
+            div#video-panel {
+                text-align: center;
+            }
         }
 
         div#hot {
             display: none;
-            margin-top: 40px;
+            margin-top: 20px;
             h2 {
                 margin: 20px 10px;
                 color: $highlight-color;
@@ -253,6 +257,7 @@ body {
 
     footer {
         color: $base-color;
+        margin-left: 10px;
 
         a {
             &:link, &:visited {

@@ -148,7 +148,7 @@ __DATA__
     </form>
   </div>
   <div id="hot">
-    <h2>みんなが見た動画</h2>
+    <h2>人気のまとめ</h2>
     <script type="text/x-tmpl" id="tmpl-hot-pages">
       <a href="<%= petaURL %>">
       <li>
