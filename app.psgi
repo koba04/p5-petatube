@@ -85,6 +85,7 @@ __DATA__
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 <!--[if lt IE 9]>
 <script src="<: uri_for('/static/js/lib/html5shiv.js') :>"></script>
+<script src="<: uri_for('/static/js/lib/IE9.js') :>"></script>
 <![endif]-->
 <script src="<: uri_for('/static/js/lib/jquery.powertip-1.1.0.min.js') :>"></script>
 <script src="<: uri_for('/static/js/lib/underscore.js') :>"></script>
