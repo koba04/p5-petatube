@@ -43,7 +43,8 @@ sub record {
     return unless $url;
 
     my $db = PetaTube::DB->new;
-    my $row = $db->single(peta => { digest => murmur_hash($url), url => $url});
+    my $digest = murmur_hash($url);
+    my $row = $db->single(peta => { digest => $digest, url => $url});
 
     my %cond = (
         title               => $title,
@@ -60,7 +61,7 @@ sub record {
     } else {
         $row = $db->insert(peta => {
             %cond,
-            digest      => murmur_hash($url),
+            digest      => $digest,
             url         => $url,
             view_count  => 1,
             created_at  => \'NOW()',
