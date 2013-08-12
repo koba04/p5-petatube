@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>PetaTube</title>
+<meta name="viewport" content="width=900" />
+<meta name="description" content="PetaTubeはYouTubeの動画が貼ってあるページのURLを入れるだけで連続再生出来るサービスです。" />
+<meta property="fb:admins" content="100001278582922" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<!--[if lt IE 9]>
+<script src="<: static_file('/static/js/lib/html5shiv.js') :>"></script>
+<script src="<: static_file('/static/js/lib/IE9.js') :>"></script>
+<![endif]-->
+<script src="<: static_file('/static/js/lib/jquery.powertip-1.1.0.min.js') :>"></script>
+<script src="<: static_file('/static/js/lib/underscore.js') :>"></script>
+<script src="<: static_file('/static/js/lib/backbone.js') :>"></script>
+<script src="<: static_file('/static/js/petatube.min.js') :>"></script>
+<link rel="stylesheet" href="<: uri_for('/static/css/main.css') :>">
+<link rel="stylesheet" href="<: uri_for('/static/css/lib/jquery.powertip.css') :>">
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-8875970-3']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+<body>
+<header>
+<h1><a href="/">PetaTube</a></h1>
+<div id="menu">
+  <a href="#about" class="open-modal">about</a>&nbsp;
+  <a href="javascript:window.location='http://petatube.koba04.com/?' + window.location;" class="bookmarklet" title="このリンクをブックマークして動画のあるページで押すと簡単に連続再生出来ます">peta</a>
+</div>
+</header>
+<section id="about">
+  <a href="#" class="close-modal"></a>
+  <div>
+    <h1>PetaTubeとは?</h1>
+    <dl>
+      <dt>ペタっとURLを貼るだけ</dt>
+      <dd>
+        YouTubeの動画が貼ってあるページのURLをペタっと貼り付けると<br />
+        そのページにある再生可能な動画を連続再生することが出来るだけのサービスです<br />
+        URLの指定のされ方によっては動画が取得出来ないことがあります
+      </dd>
+      <dt>ブックマークレットで簡単Play</dt>
+      <dd>
+        メニューにある「peta」をブックマークしておくことで、YouTubeの動画があるページでブックマークをクリックするだけで再生出来ます
+      </dd>
+      <dt>more</dt>
+      <dd>
+        <a href="http://d.hatena.ne.jp/koba04/20121002/1349103920">http://d.hatena.ne.jp/koba04/20121002/1349103920</a>
+      </dd>
+    </dl>
+  </div>
+</section>
+<section id="main">
+  <div id="play-video">
+    <div id="video-info"></div>
+    <div id="video"></div>
+    <div id="video-panel"></div>
+    <script type="text/x-tmpl" id="tmpl-button">
+      <input type="button" id="prev-button" value="&lt;&lt;" />
+      <span class="play-index"><%= current %>/<%= total %></span>
+      <input type="button" id="next-button" value="&gt;&gt;" />
+      <input type="button" id="shuffle-button" value="shuffle" />
+    </script>
+  </div>
+  <div id="input-url">
+    <div id="play-url"></div>
+    <form action="#" method="GET">
+      <input type="text" size="50" name="url" value="" placeholder="YouTubeの動画があるページのURLを貼ってください">
+      <input type="submit" value="play">
+    </form>
+  </div>
+  <div id="hot">
+    <h2>人気のまとめ</h2>
+    <script type="text/x-tmpl" id="tmpl-hot-pages">
+      <a href="<%= petaURL %>">
+      <li>
+        <div class="hot-thumbnail">
+          <img src="<%= thumbnailImagePath %>" alt="<%= title %>" />
+        </div>
+        <div class="hot-link">
+          <%= title %><br />
+          <span class="video-count">(<%= videoCount %>videos)</span>
+        </div>
+      </li>
+      </a>
+    </script>
+  </div>
+</section>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1&appId=346463362115366";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+  $(".open-modal").click(function() {
+    $(".fb-like").hide();
+  });
+  $(".close-modal").click(function() {
+    $(".fb-like").show();
+  });
+</script>
+<footer>
+  <span>&copy; <a href="http://about.me/koba04">koba04</a></span>
+  <span>Powered by <a href="http://amon.64p.org/">Amon2</a></span>
+  <span class="fb-like" data-href="http://petatube.koba04.com/" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false" data-font="arial"></span>
+  <span class="tweet">
+    <a href="https://twitter.com/intent/tweet?screen_name=koba04&text=http%3A%2F%2Fpetatube.koba04.com%2F%20" class="twitter-mention-button" data-lang="ja" data-related="koba04">Tweet to @koba04</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja" data-hashtags="petatube">ツイート</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  </span>
+</footer>
+<script>
+</script>
+</body>
+</html>

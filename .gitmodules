@@ -1,0 +1,3 @@
+[submodule "submodules/p5-webservice-youtube-lite"]
+	path = submodules/p5-webservice-youtube-lite
+	url = git@github.com:koba04/p5-webservice-youtube-lite.git
