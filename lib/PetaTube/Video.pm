@@ -7,55 +7,45 @@ use Coro;
 use Coro::Select;
 use Encode;
 use Furl;
-use JSON::XS;
 use WebService::YouTube::Lite;
 use Amon2::Declare;
 
 my $youtube = WebService::YouTube::Lite->new;
-my $json = JSON::XS->new->utf8(1);
 
 sub extract_video_ids {
     my $class = shift;
     my ($url) = @_;
 
-    my $res = c->redis->hget('video_ids' => $url);
-    if ( $res ) {
-        c->redis->zincrby("view_score", 1, $url);
-        return $json->decode($res);
-    }
-
-    $res = $youtube->extract_video_ids($url);
-    if ( $url =~ m{^http://matome\.naver\.jp} ) {
-         my $video_ids = $class->_extract_id_naver_matome_paging($url);
-         push @{ $res->{ids} }, @$video_ids;
-    }
-    $res->{thumbnailVideoId} = $res->{ids}->[ int rand @{ $res->{ids} }];
-    $res->{videoCount} = scalar @{$res->{ids}};
-    $res->{title} = decode_utf8($res->{title});
-
-    c->redis->hset('video_ids', $url => $json->encode($res));
-    c->redis->zincrby("view_score", 1, $url);
-    return $res;
+    my $result = c->redis->get_callback('video_ids', $url => sub {
+        my $res = $youtube->extract_video_ids($url);
+        if ( $url =~ m{^http://matome\.naver\.jp} ) {
+             my $video_ids = $class->_extract_id_naver_matome_paging($url);
+             push @{ $res->{ids} }, @$video_ids;
+        }
+        $res->{thumbnailVideoId} = $res->{ids}->[ int rand @{ $res->{ids} }];
+        $res->{videoCount} = scalar @{$res->{ids}};
+        $res->{title} = decode_utf8($res->{title});
+        return $res;
+    }, 60 * 60);
+    c->redis->incr_score("view_score" => $url);
+    return $result;
 }
 
 sub fetch_video {
     my $class = shift;
     my ($video_id) = @_;
 
-    my $res = c->redis->hget('video_info' => $video_id);
-    return $json->decode($res) if $res;
-
-    $res = $youtube->fetch_by_id($video_id);
-    c->redis->hset('video_info', $video_id => $json->encode($res));
-    return $res;
+    c->redis->get_callback('video_info', $video_id => sub {
+        return $youtube->fetch_by_id($video_id);
+    }, 60 * 60);
 }
 
 sub hot {
     my $class = shift;
-    my $urls = c->redis->zrevrange("view_score", 0, 20);
+    my $urls = c->redis->rank_range("view_score", 0, 20);
     my $res = [];
     for my $url (@$urls) {
-        my $info = $json->decode(c->redis->hget('video_ids' => $url));
+        my $info = c->redis->get('video_ids' => $url);
         $info->{url} = $url;
         push @$res, $info;
     }
