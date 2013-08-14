@@ -1,4 +1,4 @@
-package PetaTube::Redis;
+package PetaTube::DataStore;
 use strict;
 use warnings;
 use utf8;
@@ -9,7 +9,7 @@ use JSON::XS;
 sub new {
     my ($class) = shift;
 
-    my $redis =  Redis->new(
+    my $redis = Redis->new(
         name        => 'petatube',
         server      => 'localhost:6379',
         encoding    => undef,

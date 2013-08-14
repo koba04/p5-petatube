@@ -6,11 +6,11 @@ use parent qw/Amon2/;
 our $VERSION='3.85';
 use 5.008001;
 
-use PetaTube::Redis;
+use PetaTube::DataStore;
 
-sub redis {
+sub data_store {
     my $self = shift;
-    return $self->{__redis} ||= PetaTube::Redis->new;
+    return $self->{__data_store} ||= PetaTube::DataStore->new;
 }
 
 1;
