@@ -53,6 +53,10 @@ sub incr_score {
 sub rank_range {
     my ($self, $namespace, $from, $to) = @_;
 
+    # rank to index
+    $from = $from - 1 if $from > 0;
+    $to   = $to   - 1 if $to   > 0;
+
     $self->{redis}->zrevrange($namespace, $from, $to);
 }
 
@@ -63,3 +67,46 @@ sub _make_key {
 
 
 1;
+__END__
+=head1 NAME PetaTube::DataStore
+
+=head1 DESCRIPTION
+
+  PetaTube's dataStore.
+  use Redis. (may chage?)
+
+=head1 SYNOPSYS
+
+    my $store = PetaTube::DataStore->new;
+    $store->set("hoge", "key", { name => "koba04" })
+    my $person = $store->get("hoge", "key");
+
+=head1 METHODS
+
+=over 4
+
+=item $store = PetaTube::DataStore->new
+
+  create instance
+
+=item $store->set("namespace", "key", { name => "koba04" }, 60 * 60)
+
+  set data (expire is optional)
+
+=item $store->get("namespace", "key")
+
+  get data
+
+=item $store->get_callback("namespace", "key", sub { return { name => "koba04" } }, 60 * 60);
+
+  get data. if can not get data, call subroutine and set returned value.
+  (expire is optional)
+
+=item $store->incr_score("namespace", "key")
+
+  increment score
+
+=item my $rank_data = $store->rank_range("namespace", "key", 1, 20)
+
+  get ranking data between $from and $to
+

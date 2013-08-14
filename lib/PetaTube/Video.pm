@@ -42,7 +42,7 @@ sub fetch_video {
 
 sub hot {
     my $class = shift;
-    my $urls = c->data_store->rank_range("view_score", 0, 20);
+    my $urls = c->data_store->rank_range("view_score", 1, 20);
     my $res = [];
     for my $url (@$urls) {
         my $info = c->data_store->get('video_ids' => $url);
