@@ -85,3 +85,31 @@ sub _extract_id_naver_matome_paging {
 }
 
 1;
+__END__
+=head1 NAME PetaTube::Video
+
+=head1 DESCRIPTION
+
+  PetaTube's (youtube) video library
+
+=head1 SYNOPSYS
+
+    my $video = PetaTube::Video->fetch($video_id);
+    my $result = PetaTube::Video->extract_video_ids("http://example.com/");
+
+=head1 METHODS
+
+=over 4
+
+=item my $result = PetaTube::Video->extract_video_ids("http://example.com/")
+
+    extract youtube's video id from target $url page.
+
+=item my $video = PetaTube::Video->fetch($video_id);
+
+    fetch youtube's video info
+
+=item my $result = PetaTube::Video->popular
+
+    get popular pages
+
