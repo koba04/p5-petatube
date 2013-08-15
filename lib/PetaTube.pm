@@ -20,3 +20,24 @@ sub redis {
 }
 
 1;
+__END__
+=head1 NAME PetaTube
+
+=head1 DESCRIPTION
+
+  PetaTube's Context
+
+=head1 SYNOPSYS
+
+    my $c = PetaTube->context;
+    my $data_store = $c->data_store;
+
+=head1 METHODS
+
+=over 4
+
+=item my $data_store = $c->data_store
+
+    return PetaTube::DataStore instance
+
+
