@@ -31,7 +31,7 @@ sub extract_video_ids {
     return $result;
 }
 
-sub fetch_video {
+sub fetch {
     my $class = shift;
     my ($video_id) = @_;
 
@@ -40,7 +40,7 @@ sub fetch_video {
     }, 60 * 60);
 }
 
-sub hot {
+sub popular {
     my $class = shift;
     my $urls = c->data_store->rank_range("view_score", 1, 20);
     my $res = [];

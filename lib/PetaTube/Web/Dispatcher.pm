@@ -37,15 +37,15 @@ get '/api/video/{id}' => sub {
     my $res = {};
     # get youtube video info
     if ( $video_id ) {
-        $res = PetaTube::Video->fetch_video($video_id);
+        $res = PetaTube::Video->fetch($video_id);
     }
     return $c->render_json($res || {});
 };
 
 get '/api/hot' => sub {
     my $c = shift;
-    my $hot_pages = PetaTube::Video->hot;
-    return $c->render_json($hot_pages);
+    my $popular_pages = PetaTube::Video->popular;
+    return $c->render_json($popular_pages);
 };
 
 1;
