@@ -73,6 +73,15 @@ DISTRIBUTIONS
       Test::Requires 0
       parent 0
       perl 5.008001
+  Any-Moose-0.21
+    pathname: S/SA/SARTAK/Any-Moose-0.21.tar.gz
+    provides:
+      Any::Moose 0.21
+      AnyMooseTest undef
+      inc::MakeMaker undef
+    requirements:
+      ExtUtils::MakeMaker 6.30
+      Mouse 0.40
   AnyEvent-7.04
     pathname: M/ML/MLEHMANN/AnyEvent-7.04.tar.gz
     provides:
@@ -1226,6 +1235,17 @@ DISTRIBUTIONS
       Test::More 0.47
       Test::Tester 0.107
       perl 5.006
+  Test-RedisServer-0.12
+    pathname: T/TY/TYPESTER/Test-RedisServer-0.12.tar.gz
+    provides:
+      Test::RedisServer 0.12
+    requirements:
+      Any::Moose 0.18
+      ExtUtils::MakeMaker 6.36
+      File::Temp 0.19
+      Redis 1.925
+      Test::More 0.86
+      Test::TCP 1.17
   Test-Requires-0.07
     pathname: T/TO/TOKUHIROM/Test-Requires-0.07.tar.gz
     provides:
