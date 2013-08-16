@@ -6,13 +6,20 @@ BEGIN {
     if ($ENV{PLACK_ENV} eq 'deployment') {
         die "Do not run a test script on deployment environment";
     }
+
 }
+
 use File::Spec;
 use File::Basename;
 use lib File::Spec->rel2abs(File::Spec->catdir(dirname(__FILE__), '..', 'extlib', 'lib', 'perl5'));
 use lib File::Spec->rel2abs(File::Spec->catdir(dirname(__FILE__), '..', 'lib'));
 use parent qw/Exporter/;
 use Test::More 0.98;
+
+use Test::TCP;
+use Test::RedisServer;
+use PetaTube;
+use PetaTube::Redis;
 
 our @EXPORT = qw(slurp);
 
@@ -28,6 +35,13 @@ our @EXPORT = qw(slurp);
         binmode $builder->todo_output,    ":utf8";
         return $builder;
     };
+
+    my $redis_server = Test::RedisServer->new;
+    my $c = PetaTube->bootstrap;
+    $c->{__redis} = PetaTube::Redis->new(
+        $redis_server->connect_info,
+    );
+
 }
 
 

@@ -1,4 +1,4 @@
-package PetaTube::DataStore;
+package PetaTube::Redis;
 use strict;
 use warnings;
 use utf8;
@@ -7,13 +7,8 @@ use Redis;
 use JSON::XS;
 
 sub new {
-    my ($class) = shift;
+    my ($class, $redis) = shift;
 
-    my $redis = Redis->new(
-        name        => 'petatube',
-        server      => 'localhost:6379',
-        encoding    => undef,
-    );
     bless { redis => $redis }, $class;
 }
 
@@ -68,7 +63,7 @@ sub _make_key {
 
 1;
 __END__
-=head1 NAME PetaTube::DataStore
+=head1 NAME PetaTube::Redis
 
 =head1 DESCRIPTION
 
@@ -77,7 +72,7 @@ __END__
 
 =head1 SYNOPSYS
 
-    my $store = PetaTube::DataStore->new;
+    my $store = PetaTube::Redis->new;
     $store->set("hoge", "key", { name => "koba04" })
     my $person = $store->get("hoge", "key");
 
@@ -85,7 +80,7 @@ __END__
 
 =over 4
 
-=item $store = PetaTube::DataStore->new
+=item $store = PetaTube::Redis->new
 
   create instance
 
