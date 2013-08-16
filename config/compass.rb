@@ -1,5 +1,5 @@
 http_path       = "/"
-sass_dir        = "src/scss"
+sass_dir        = "scss"
 css_dir         = "static/css"
 images_dir      = "static/img"
 javascripts_dir = "static/js"

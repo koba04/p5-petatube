@@ -1,6 +1,9 @@
 module.exports = (grunt) ->
   "use strict"
 
+  # set ENV for compass.sh (bundle exec compass)
+  process.env.PATH += ":."
+
   grunt.initConfig(
     pkg: grunt.file.readJSON("package.json")
     watch:
@@ -15,19 +18,24 @@ module.exports = (grunt) ->
         files: [
           "scss/*.scss"
         ]
-        tasks: ["compass"]
+        tasks: ["compass:dist"]
         options: "<%= watch.coffee.options %>"
       all:
         files: [
           "<%= watch.coffee.files %>"
           "<%= watch.scss.files %>"
         ]
-        tasks: ["coffee", "compass"]
+        tasks: ["coffee", "compass:dist"]
         options: "<%= watch.coffee.options %>"
     coffee:
       compile:
         files:
-          "static/js/petatube2.js": ["coffee/app.coffee"]
+          "static/js/petatube2.js": [
+            "coffee/app.coffee"
+            "coffee/controllers/*.coffee"
+            "coffee/directives/*.coffee"
+            "coffee/services/*.coffee"
+          ]
     compass:
       dist:
         options:
@@ -44,4 +52,4 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-coffee"
   grunt.loadNpmTasks "grunt-contrib-compass"
 
-  grunt.registerTask 'default', ['coffee', 'compass']
+  grunt.registerTask 'default', ['coffee', 'compass:dist']
