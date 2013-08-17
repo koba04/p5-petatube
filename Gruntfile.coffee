@@ -44,22 +44,28 @@ module.exports = (grunt) ->
         files: "static/js/app.min.js": ["static/js/app.js"]
 
     concat:
-      js:
+      prod:
         src: [
           "bower_components/angular/angular.min.js"
           "static/js/app.min.js"
         ]
         dest: "static/js/all.js"
+      dev:
+        src: [
+          "bower_components/angular/angular.js"
+          "static/js/app.js"
+        ]
+        dest: "static/js/all.min.js"
 
     compass:
-      prod:
+      dist:
         options:
           config: "config/compass.rb"
-          environment: "production"
-      dev:
-        options:
-          config: "config/compass.rb"
-          environment: "development"
+
+    cssmin:
+      compress:
+        files:
+          "static/css/app.min.css": [ "static/css/app.css" ]
   )
 
   # load grunt plugings
@@ -68,7 +74,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-compass"
   grunt.loadNpmTasks "grunt-contrib-concat"
   grunt.loadNpmTasks "grunt-contrib-uglify"
+  grunt.loadNpmTasks "grunt-contrib-cssmin"
 
-  grunt.registerTask 'js', ['coffee', 'uglify:dest', 'concat:js']
-  grunt.registerTask 'css', ['compass:prod']
+  grunt.registerTask 'js', ['coffee', 'uglify', 'concat']
+  grunt.registerTask 'css', ['compass', 'cssmin']
   grunt.registerTask 'default', ['js', 'css']

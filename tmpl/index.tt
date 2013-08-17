@@ -15,7 +15,7 @@
 <script src="<: static_file('/static/js/lib/underscore.js') :>"></script>
 <script src="<: static_file('/static/js/lib/backbone.js') :>"></script>
 <script src="<: static_file('/static/js/petatube.min.js') :>"></script>
-<link rel="stylesheet" href="<: uri_for('/static/css/main.css') :>">
+<link rel="stylesheet" href="<: uri_for('/static/css/app.css') :>">
 <link rel="stylesheet" href="<: uri_for('/static/css/lib/jquery.powertip.css') :>">
 <script type="text/javascript">
   var _gaq = _gaq || [];
