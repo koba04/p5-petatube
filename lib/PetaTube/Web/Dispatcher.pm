@@ -11,7 +11,20 @@ any '/' => sub {
     return $c->render('index.tt');
 };
 
-get '/api/page' => sub {
+get '/videos/{id}' => sub {
+    my $c = shift;
+    my ($m) = @_;
+    my $video_id = $m->{id} || '';
+    my $res = {};
+    # get youtube video info
+    if ( $video_id ) {
+        $res = PetaTube::Video->fetch($video_id);
+    }
+    return $c->render_json($res || {});
+};
+
+
+get '/videos/' => sub {
     my $c = shift;
 
     my $url = $c->req->param('url') || '';
@@ -29,20 +42,7 @@ get '/api/page' => sub {
     });
 };
 
-# for fetch of backbone model
-get '/api/video/{id}' => sub {
-    my $c = shift;
-    my ($m) = @_;
-    my $video_id = $m->{id} || '';
-    my $res = {};
-    # get youtube video info
-    if ( $video_id ) {
-        $res = PetaTube::Video->fetch($video_id);
-    }
-    return $c->render_json($res || {});
-};
-
-get '/api/hot' => sub {
+get '/popular' => sub {
     my $c = shift;
     my $popular_pages = PetaTube::Video->popular;
     return $c->render_json($popular_pages);

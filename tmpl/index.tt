@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app>
+<html>
 <head>
 <meta charset="utf-8">
 <title>PetaTube</title>
@@ -11,10 +11,8 @@
 <script src="<: static_file('/static/js/lib/html5shiv.js') :>"></script>
 <script src="<: static_file('/static/js/lib/IE9.js') :>"></script>
 <![endif]-->
+<script src="<: static_file('/static/js/all.js') :>"></script>
 <script src="<: static_file('/static/js/lib/jquery.powertip-1.1.0.min.js') :>"></script>
-<script src="<: static_file('/static/js/lib/underscore.js') :>"></script>
-<script src="<: static_file('/static/js/lib/backbone.js') :>"></script>
-<script src="<: static_file('/static/js/petatube.min.js') :>"></script>
 <link rel="stylesheet" href="<: uri_for('/static/css/app.css') :>">
 <link rel="stylesheet" href="<: uri_for('/static/css/lib/jquery.powertip.css') :>">
 <script type="text/javascript">
@@ -28,7 +26,7 @@
   })();
 </script>
 </head>
-<body ng-controller="Main">
+<body>
 <header>
 <h1><a href="/">PetaTube</a></h1>
 <div id="menu">

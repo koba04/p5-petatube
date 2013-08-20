@@ -5,25 +5,23 @@ use utf8;
 
 use Redis;
 use JSON::XS;
-
-sub new {
-    my ($class, $redis) = shift;
-
-    bless { redis => $redis }, $class;
-}
+use Class::Accessor::Lite (
+    new => 1,
+    ro  => [qw/redis/],
+);
 
 sub set {
     my ($self, $namespace, $key, $value, $expire) = @_;
 
     my $make_key = $self->_make_key($namespace, $key);
-    $self->{redis}->set($make_key => encode_json($value));
-    $self->{redis}->expire($make_key => $expire) if $expire;
+    $self->redis->set($make_key => encode_json($value));
+    $self->redis->expire($make_key => $expire) if $expire;
 }
 
 sub get {
     my ($self, $namespace, $key) = @_;
 
-    my $res = $self->{redis}->get($self->_make_key($namespace, $key));
+    my $res = $self->redis->get($self->_make_key($namespace, $key));
     return unless $res;
     decode_json($res);
 }
@@ -42,7 +40,7 @@ sub get_callback {
 sub incr_score {
     my ($self, $namespace, $key) = @_;
 
-    $self->{redis}->zincrby($namespace, 1, $key);
+    $self->redis->zincrby($namespace, 1, $key);
 }
 
 sub rank_range {
@@ -52,7 +50,7 @@ sub rank_range {
     $from = $from - 1 if $from > 0;
     $to   = $to   - 1 if $to   > 0;
 
-    $self->{redis}->zrevrange($namespace, $from, $to);
+    $self->redis->zrevrange($namespace, $from, $to);
 }
 
 sub _make_key {

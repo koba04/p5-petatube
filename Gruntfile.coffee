@@ -34,9 +34,9 @@ module.exports = (grunt) ->
         files:
           "static/js/app.js": [
             "coffee/app.coffee"
-            "coffee/controllers/*.coffee"
-            "coffee/directives/*.coffee"
-            "coffee/services/*.coffee"
+            "coffee/model/*.coffee"
+            "coffee/collection/*.coffee"
+            "coffee/view/*.coffee"
           ]
 
     uglify:
@@ -46,16 +46,20 @@ module.exports = (grunt) ->
     concat:
       prod:
         src: [
-          "bower_components/angular/angular.min.js"
+          "bower_components/jquery/jquery.min.js"
+          "bower_components/underscore/underscore-min.js"
+          "bower_components/backbone/backbone-min.js"
           "static/js/app.min.js"
         ]
         dest: "static/js/all.js"
       dev:
         src: [
-          "bower_components/angular/angular.js"
+          "bower_components/jquery/jquery.js"
+          "bower_components/underscore/underscore.js"
+          "bower_components/backbone/backbone.js"
           "static/js/app.js"
         ]
-        dest: "static/js/all.min.js"
+        dest: "static/js/all.js"
 
     compass:
       dist:
