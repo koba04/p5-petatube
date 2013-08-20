@@ -11656,7 +11656,7 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
   };
 
   jQuery(function() {
-    var PetaTube, hotPages, match, url, videos;
+    var PetaTube, match, pages, url, videos;
     PetaTube = window.PetaTube;
     videos = new PetaTube.Collection.Videos();
     new PetaTube.View.Search({
@@ -11670,11 +11670,11 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
       url = match[1];
       videos.fetchByUrl(url);
     } else {
-      hotPages = new PetaTube.Collection.HotPages();
-      new PetaTube.View.HotPages({
-        collection: hotPages
+      pages = new PetaTube.Collection.Pages();
+      new PetaTube.View.Popular({
+        collection: pages
       });
-      hotPages.fetch();
+      pages.fetch();
     }
     return $('.bookmarklet').powerTip({
       placement: 's'
@@ -11781,7 +11781,7 @@ if ( typeof window === "object" && typeof window.document === "object" ) {
 
 (function() {
   "use strict";
-  PetaTube.View.HotPages = Backbone.View.extend({
+  PetaTube.View.Popular = Backbone.View.extend({
     el: "#hot",
     initialize: function() {
       return this.collection.on("reset", this.draw, this);

@@ -1,6 +1,6 @@
 "use strict"
 
-PetaTube.View.HotPages = Backbone.View.extend
+PetaTube.View.Popular = Backbone.View.extend
   el: "#hot"
   initialize: ->
     @collection.on "reset", @draw, @

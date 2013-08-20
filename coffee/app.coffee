@@ -20,11 +20,11 @@ jQuery ->
     url = match[1]
     videos.fetchByUrl url
   else
-    # fetch hot page
-    hotPages = new PetaTube.Collection.HotPages()
-    new PetaTube.View.HotPages
-      collection: hotPages
-    hotPages.fetch()
+    # fetch popular
+    pages = new PetaTube.Collection.Pages()
+    new PetaTube.View.Popular
+      collection: pages
+    pages.fetch()
 
   # tooltip
   $('.bookmarklet').powerTip
