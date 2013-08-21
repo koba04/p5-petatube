@@ -18,3 +18,10 @@ https://www.virtualbox.org/
 ## knife-solo
 
     bundle install --path=vendor/bundle
+
+### setup
+
+    cat ~/.ssh/config
+
+    Host 192.168.33.10
+        IdentityFile ~/.vagrant.d/insecure_private_key
