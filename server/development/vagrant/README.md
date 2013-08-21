@@ -23,5 +23,5 @@ https://www.virtualbox.org/
 
     cat ~/.ssh/config
 
-    Host 192.168.33.10
+    Host 192.168.10.2
         IdentityFile ~/.vagrant.d/insecure_private_key
