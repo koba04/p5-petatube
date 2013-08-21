@@ -12,16 +12,18 @@ https://www.virtualbox.org/
 
 ### setup
 
-    vagrant init precise64 http://files.vagrantup.com/precise64.box
-    vagrant up
+    % vagrant init precise64 http://files.vagrantup.com/precise64.box
+    % vagrant up
 
 ## knife-solo
 
-    bundle install --path=vendor/bundle
+    % bundle install --path=vendor/bundle
 
 ### setup
 
-    cat ~/.ssh/config
+    % cat ~/.ssh/config
 
     Host 192.168.10.2
         IdentityFile ~/.vagrant.d/insecure_private_key
+
+    % cd chef && bundle exec knife solo prepare vagrant@192.168.10.2

@@ -53,4 +53,4 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  knife-solo
+  knife-solo (~> 0.3.0)
