@@ -20,5 +20,5 @@
 
     % bundle install --path=vendor/bundle
 
-    % cd chef && bundle exec knife solo prepare vagrant@192.168.10.2
+    % cd chef && bundle exec knife solo prepare vagrant@petatube
 
