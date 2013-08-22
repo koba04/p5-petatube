@@ -2,28 +2,23 @@
 
 ## virtualbox
 
-https://www.virtualbox.org/
+    https://www.virtualbox.org/
 
 ## vagrant
 
-### install
-
     http://docs.vagrantup.com/v2/installation/index.html
 
-### setup
+# setup
+
+## vagrant
 
     % vagrant init precise64 http://files.vagrantup.com/precise64.box
     % vagrant up
+    % vagrant ssh-config --host petatube >> ~/.ssh/config
 
-## knife-solo
+## chef
 
     % bundle install --path=vendor/bundle
 
-### setup
-
-    % cat ~/.ssh/config
-
-    Host 192.168.10.2
-        IdentityFile ~/.vagrant.d/insecure_private_key
-
     % cd chef && bundle exec knife solo prepare vagrant@192.168.10.2
+
