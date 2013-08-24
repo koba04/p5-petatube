@@ -18,4 +18,18 @@ subtest 'redis' => sub {
     is $petatube->redis, $petatube->redis, 'same object';
 };
 
+subtest 'youtube' => sub {
+    my $petatube = PetaTube->context;
+
+    isa_ok $petatube->youtube, 'WebService::YouTube::Lite';
+    is $petatube->youtube, $petatube->youtube, 'same object';
+};
+
+subtest 'http' => sub {
+    my $petatube = PetaTube->context;
+
+    isa_ok $petatube->http, 'Furl';
+    is $petatube->http, $petatube->http, 'same object';
+};
+
 done_testing;

@@ -6,18 +6,14 @@ use URI;
 use Coro;
 use Coro::Select;
 use Encode;
-use Furl;
-use WebService::YouTube::Lite;
 use Amon2::Declare;
-
-my $youtube = WebService::YouTube::Lite->new;
 
 sub extract_video_ids {
     my $class = shift;
     my ($url) = @_;
 
     my $result = c->redis->get_callback('video_ids', $url => sub {
-        my $res = $youtube->extract_video_ids($url);
+        my $res = c->youtube->extract_video_ids($url);
         if ( $url =~ m{^http://matome\.naver\.jp} ) {
              my $video_ids = $class->_extract_id_naver_matome_paging($url);
              push @{ $res->{ids} }, @$video_ids;
@@ -36,7 +32,7 @@ sub fetch {
     my ($video_id) = @_;
 
     c->redis->get_callback('video_info', $video_id => sub {
-        return $youtube->fetch_by_id($video_id);
+        return c->youtube->fetch_by_id($video_id);
     }, 60 * 60);
 }
 
@@ -57,8 +53,7 @@ sub _extract_id_naver_matome_paging {
     my $class = shift;
     my ($url) = @_;
 
-    my $ua = Furl->new;
-    my $response = $ua->get($url);
+    my $response = c->http->get($url);
 
     return [] unless $response->is_success;
 
@@ -76,7 +71,7 @@ sub _extract_id_naver_matome_paging {
             my $paging_url = $uri->clone;
             $paging_url->query_form(page => $page);
             warn "start =>" . $paging_url;
-            my $res = $youtube->extract_video_ids($paging_url);
+            my $res = c->youtube->extract_video_ids($paging_url);
             push @$video_ids, @{ $res->{ids} };
         }
     }
