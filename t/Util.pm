@@ -23,6 +23,7 @@ use PetaTube::Redis;
 
 our @EXPORT = qw(slurp);
 
+our $REDIS_SERVER;
 {
     # utf8 hack.
     binmode Test::More->builder->$_, ":utf8" for qw/output failure_output todo_output/;
@@ -36,12 +37,11 @@ our @EXPORT = qw(slurp);
         return $builder;
     };
 
-    my $redis_server = Test::RedisServer->new;
+    $REDIS_SERVER = Test::RedisServer->new;
     my $c = PetaTube->bootstrap;
     $c->{__redis} = PetaTube::Redis->new(
-        $redis_server->connect_info,
+        redis => Redis->new($REDIS_SERVER->connect_info),
     );
-
 }
 
 

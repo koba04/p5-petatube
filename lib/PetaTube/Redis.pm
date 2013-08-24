@@ -38,9 +38,9 @@ sub get_callback {
 }
 
 sub incr_score {
-    my ($self, $namespace, $key) = @_;
+    my ($self, $namespace, $key, $score) = @_;
 
-    $self->redis->zincrby($namespace, 1, $key);
+    $self->redis->zincrby($namespace, $score || 1, $key);
 }
 
 sub rank_range {
