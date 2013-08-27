@@ -19,3 +19,4 @@ MYMETA.yml
 node_modules/
 vendor/
 bower_components/
+.bundle
