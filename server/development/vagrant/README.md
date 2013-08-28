@@ -20,5 +20,7 @@
 
     % bundle install --path=vendor/bundle
 
-    % cd chef && bundle exec knife solo prepare vagrant@petatube
+    % cd chef
+    % bundle exec knife solo prepare vagrant@petatube
+    % bundle exec knife solo cook petatube
 
