@@ -2,6 +2,7 @@
   "run_list": [
     "nginx",
     "supervisor",
+    "redis",
     "anyenv"
   ]
 }
