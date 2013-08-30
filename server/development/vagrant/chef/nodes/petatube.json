@@ -1,3 +1,7 @@
 {
-  "run_list": ["nginx", "supervisor"]
+  "run_list": [
+    "nginx",
+    "supervisor",
+    "anyenv"
+  ]
 }
