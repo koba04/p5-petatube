@@ -17,6 +17,10 @@ bash "git clone petatube" do
   not_if { File.exist?("#{node[:user][:home]}/petatube") }
 end
 
+directory "/var/log/petatube" do
+  action :create
+end
+
 cookbook_file "/etc/supervisor/conf.d/nginx.conf" do
   source "nginx.conf"
   action :create
@@ -31,3 +35,6 @@ cookbook_file "/etc/supervisor/conf.d/redis.conf" do
   source "redis.conf"
   action :create
 end
+
+# supervisor reload
+
