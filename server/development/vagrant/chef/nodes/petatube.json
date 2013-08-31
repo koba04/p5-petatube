@@ -3,6 +3,7 @@
     "nginx",
     "supervisor",
     "redis",
-    "anyenv"
+    "anyenv",
+    "petatube"
   ]
 }
