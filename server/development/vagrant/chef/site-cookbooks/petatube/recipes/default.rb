@@ -13,6 +13,8 @@ bash "git clone" do
   environment "HOME" => node[:user][:home]
   code <<-EOC
     git clone https://github.com/koba04/p5-petatube.git petatube
+    cd petatube
+    git submodule update
   EOC
   not_if { File.exist?("#{node[:user][:home]}/petatube") }
 end
@@ -24,6 +26,7 @@ bash "git pull" do
   code <<-EOC
     cd petatube
     git pull --rebase
+    git submodule update
   EOC
   only_if { File.exist?("#{node[:user][:home]}/petatube") }
 end
