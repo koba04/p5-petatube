@@ -49,6 +49,21 @@ bash "set up perl module" do
   EOC
 end
 
+bash "install npm" do
+  user node[:user][:name]
+  cwd  node[:user][:home]
+  environment "HOME" => node[:user][:home]
+  code <<-EOC
+    export PATH="$HOME/.anyenv/bin:$PATH"
+    eval "$(anyenv init -)"
+    export PATH="#{node[:user][:home]}/.anyenv/envs/ndenv/shims/:$PATH"
+    cd #{node[:user][:home]}/petatube/app
+    npm install -g grunt-cli
+    npm install
+    ndenv rehash
+  EOC
+end
+
 directory "/var/log/petatube" do
   action :create
 end

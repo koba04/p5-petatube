@@ -16,6 +16,10 @@ describe command('/home/vagrant/.anyenv/envs/plenv/shims/carton -v') do
   it { should return_stdout /carton v/ }
 end
 
+describe command('/home/vagrant/.anyenv/envs/ndenv/shims/grunt --version') do
+  it { should return_stdout /grunt-cli/ }
+end
+
 describe file('/var/log/petatube') do
   it { should be_directory }
 end
