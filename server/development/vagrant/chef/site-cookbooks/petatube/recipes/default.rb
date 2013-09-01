@@ -17,6 +17,38 @@ bash "git clone petatube" do
   not_if { File.exist?("#{node[:user][:home]}/petatube") }
 end
 
+bash "install gems" do
+  user node[:user][:name]
+  cwd  node[:user][:home]
+  environment "HOME" => node[:user][:home]
+  code <<-EOC
+    export PATH="$HOME/.anyenv/bin:$PATH"
+    eval "$(anyenv init -)"
+    export PATH="#{node[:user][:home]}/.anyenv/envs/rbenv/shims/:$PATH"
+    cd #{node[:user][:home]}/petatube/app
+    gem install bundler
+    rbenv rehash
+    bundle install --path vendor/bundle
+  EOC
+end
+
+bash "set up perl module" do
+  user node[:user][:name]
+  cwd  node[:user][:home]
+  environment "HOME" => node[:user][:home]
+  code <<-EOC
+    export PATH="$HOME/.anyenv/bin:$PATH"
+    eval "$(anyenv init -)"
+    export PATH="#{node[:user][:home]}/.anyenv/envs/plenv/shims/:$PATH"
+    cd #{node[:user][:home]}/petatube/app
+    curl -L http://cpanmin.us | perl - App::cpanminus
+    plenv rehash
+    cpanm Carton
+    plenv rehash
+    carton install
+  EOC
+end
+
 directory "/var/log/petatube" do
   action :create
 end
