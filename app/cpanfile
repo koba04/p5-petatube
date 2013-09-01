@@ -13,10 +13,12 @@ requires 'Test::WWW::Mechanize::PSGI'     , '0';
 requires 'Time::Piece'                    , '1.20';
 
 # app
-requires 'Coro'     ,6.31;
-requires 'Furl'     ,2.18;
-requires 'Redis'    ,1.961;
-requires 'JSON::XS' ,2.34;
+requires 'Coro'             ,6.31;
+requires 'Furl'             ,2.18;
+requires 'Redis'            ,1.961;
+requires 'JSON::XS'         ,2.34;
+requires 'Starlet'          ,0.20;
+requires 'Server::Starter'  ,0.15;
 
 on 'configure' => sub {
     requires 'Module::Build', '0.38';

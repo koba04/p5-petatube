@@ -780,6 +780,15 @@ DISTRIBUTIONS
     requirements:
       ExtUtils::MakeMaker 0
       perl 5.006002
+  List-MoreUtils-0.33
+    pathname: A/AD/ADAMK/List-MoreUtils-0.33.tar.gz
+    provides:
+      List::MoreUtils 0.33
+    requirements:
+      ExtUtils::CBuilder 0.27
+      ExtUtils::MakeMaker 6.52
+      Test::More 0.82
+      perl 5.00503
   MRO-Compat-0.12
     pathname: B/BO/BOBTFISH/MRO-Compat-0.12.tar.gz
     provides:
@@ -887,6 +896,21 @@ DISTRIBUTIONS
       IO::Select 0
       IO::Socket::INET 0
       perl 5.006002
+  Parallel-Prefork-0.14
+    pathname: K/KA/KAZUHO/Parallel-Prefork-0.14.tar.gz
+    provides:
+      Parallel::Prefork 0.14
+      Parallel::Prefork::SpareWorkers undef
+      Parallel::Prefork::SpareWorkers::Scoreboard undef
+    requirements:
+      Class::Accessor::Lite 0.04
+      ExtUtils::MakeMaker 6.42
+      List::MoreUtils 0
+      Proc::Wait3 0.03
+      Scope::Guard 0
+      Test::Requires 0
+      Test::SharedFork 0
+      perl 5.008001
   Params-Util-1.07
     pathname: A/AD/ADAMK/Params-Util-1.07.tar.gz
     provides:
@@ -1025,6 +1049,12 @@ DISTRIBUTIONS
       Digest::SHA1 0
       Module::Build::Tiny 0.023
       Plack 0.9910
+  Proc-Wait3-0.04
+    pathname: C/CT/CTILMES/Proc-Wait3-0.04.tar.gz
+    provides:
+      Proc::Wait3 0.04
+    requirements:
+      ExtUtils::MakeMaker 0
   Redis-1.961
     pathname: M/ME/MELO/Redis-1.961.tar.gz
     provides:
@@ -1073,6 +1103,41 @@ DISTRIBUTIONS
       Module::Build 0.38
       Sub::Exporter 0
       perl v5.8.0
+  Scope-Guard-0.20
+    pathname: C/CH/CHOCOLATE/Scope-Guard-0.20.tar.gz
+    provides:
+      Scope::Guard 0.20
+    requirements:
+      ExtUtils::MakeMaker 0
+      Test::More 0
+      perl 5.006001
+  Server-Starter-0.15
+    pathname: K/KA/KAZUHO/Server-Starter-0.15.tar.gz
+    provides:
+      Server::Starter 0.15
+    requirements:
+      ExtUtils::MakeMaker 6.42
+      Getopt::Long 0
+      List::MoreUtils 0
+      Proc::Wait3 0
+      Scope::Guard 0
+      Test::TCP 2.00
+      perl 5.008
+  Starlet-0.20
+    pathname: K/KA/KAZUHO/Starlet-0.20.tar.gz
+    provides:
+      Plack::Handler::Starlet undef
+      Starlet 0.20
+      Starlet::Server undef
+    requirements:
+      ExtUtils::MakeMaker 6.42
+      LWP::UserAgent 5.8
+      Parallel::Prefork 0.13
+      Plack 0.992
+      Server::Starter 0.06
+      Test::More 0.88
+      Test::TCP 0.15
+      perl 5.008001
   Stream-Buffered-0.02
     pathname: D/DO/DOY/Stream-Buffered-0.02.tar.gz
     provides:
