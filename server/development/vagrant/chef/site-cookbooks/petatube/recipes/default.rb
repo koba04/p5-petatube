@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-bash "git clone petatube" do
+bash "git clone" do
   user node[:user][:name]
   cwd  node[:user][:home]
   environment "HOME" => node[:user][:home]
@@ -15,6 +15,17 @@ bash "git clone petatube" do
     git clone https://github.com/koba04/p5-petatube.git petatube
   EOC
   not_if { File.exist?("#{node[:user][:home]}/petatube") }
+end
+
+bash "git pull" do
+  user node[:user][:name]
+  cwd  node[:user][:home]
+  environment "HOME" => node[:user][:home]
+  code <<-EOC
+    cd petatube
+    git pull --rebase
+  EOC
+  only_if { File.exist?("#{node[:user][:home]}/petatube") }
 end
 
 bash "install gems" do
