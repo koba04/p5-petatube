@@ -13,6 +13,7 @@ bash "git clone" do
   environment "HOME" => node[:user][:home]
   code <<-EOC
     git clone https://github.com/koba04/p5-petatube.git petatube
+    git checkout -b renewal origin/renewal
     cd petatube
     git submodule init
     git submodule update
