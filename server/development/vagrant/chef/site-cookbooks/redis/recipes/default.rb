@@ -24,3 +24,10 @@ bash "redis" do
   EOC
   not_if { system("/usr/local/bin/redis-server -v") }
 end
+
+directory "/var/lib/redis/petatube" do
+  recursive true
+  action :create
+end
+
+
