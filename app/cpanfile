@@ -29,3 +29,7 @@ on 'test' => sub {
     requires 'Test::More'       , '0.98';
     requires 'Test::RedisServer', '0.12';
 };
+
+on 'develop' => sub {
+    requires  'Proclet', '0.31';
+};
