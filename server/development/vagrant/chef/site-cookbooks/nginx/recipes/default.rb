@@ -14,3 +14,9 @@ end
 service 'nginx' do
   action :disable
 end
+
+cookbook_file "/etc/nginx/nginx.conf" do
+  source "nginx.conf"
+  action :create
+end
+

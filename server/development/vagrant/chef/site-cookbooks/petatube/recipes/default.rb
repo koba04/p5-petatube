@@ -100,5 +100,11 @@ cookbook_file "/etc/supervisor/conf.d/redis.conf" do
   action :create
 end
 
-# supervisor reload
+bash "supervisor reload" do
+  user "root"
+  code <<-EOC
+    supervisorctl reload
+  EOC
+end
+
 
