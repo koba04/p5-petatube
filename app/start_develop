@@ -1,0 +1,14 @@
+use strict;
+use warnings;
+use Proclet::Declare;
+
+env(
+  PLACK_ENV => 'development',
+  LM_COLOR => 1,
+);
+service('web', 'carton exec plackup -r app.psgi');
+service('grunt', 'grunt watch');
+service('redis', 'redis-server');
+
+color;
+run;
