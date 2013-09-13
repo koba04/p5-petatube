@@ -140,6 +140,26 @@ DISTRIBUTIONS
       POSIX 0
       Time::Local 0
       perl 5.008005
+  Capture-Tiny-0.22
+    pathname: D/DA/DAGOLDEN/Capture-Tiny-0.22.tar.gz
+    provides:
+      Capture::Tiny 0.22
+    requirements:
+      Carp 0
+      Config 0
+      Exporter 0
+      ExtUtils::MakeMaker 6.30
+      File::Find 0
+      File::Spec 0
+      File::Spec::Functions 0
+      File::Temp 0
+      IO::File 0
+      IO::Handle 0
+      List::Util 0
+      Scalar::Util 0
+      Test::More 0.62
+      strict 0
+      warnings 0
   Carp-Assert-0.20
     pathname: M/MS/MSCHWERN/Carp-Assert-0.20.tar.gz
     provides:
@@ -363,6 +383,24 @@ DISTRIBUTIONS
       Sub::Install 0.921
       strict 0
       warnings 0
+  Data-Validator-1.03
+    pathname: G/GF/GFUJI/Data-Validator-1.03.tar.gz
+    provides:
+      Data::Validator 1.03
+      Data::Validator::Role::AllowExtra undef
+      Data::Validator::Role::Croak undef
+      Data::Validator::Role::Method undef
+      Data::Validator::Role::NoRestricted undef
+      Data::Validator::Role::NoThrow undef
+      Data::Validator::Role::Sequenced undef
+      Data::Validator::Role::StrictSequenced undef
+    requirements:
+      CPAN::Meta 0
+      CPAN::Meta::Prereqs 0
+      ExtUtils::MakeMaker 6.59
+      Module::Build 0.38
+      Mouse 0.93
+      perl 5.008001
   Devel-StackTrace-1.30
     pathname: D/DR/DROLSKY/Devel-StackTrace-1.30.tar.gz
     provides:
@@ -505,6 +543,17 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 6.11
       File::Spec 0
       IO::Dir 0
+  File-Which-1.09
+    pathname: A/AD/ADAMK/File-Which-1.09.tar.gz
+    provides:
+      File::Which 1.09
+    requirements:
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      File::Spec 0.60
+      Getopt::Std 0
+      Test::More 0.80
+      Test::Script 1.05
   Filesys-Notify-Simple-0.12
     pathname: M/MI/MIYAGAWA/Filesys-Notify-Simple-0.12.tar.gz
     provides:
@@ -534,6 +583,18 @@ DISTRIBUTIONS
       Scalar::Util 0
       Socket 0
       Time::HiRes 0
+      perl 5.008001
+  Getopt-Compact-WithCmd-0.21
+    pathname: X/XA/XAICRON/Getopt-Compact-WithCmd-0.21.tar.gz
+    provides:
+      Getopt::Compact::WithCmd 0.21
+    requirements:
+      ExtUtils::MakeMaker 6.59
+      Getopt::Long 2.38
+      Test::More 0.96
+      Test::Output 0
+      Test::Requires 0
+      Text::Table 0
       perl 5.008001
   Guard-1.022
     pathname: M/ML/MLEHMANN/Guard-1.022.tar.gz
@@ -755,6 +816,14 @@ DISTRIBUTIONS
       IO::String 1.08
     requirements:
       ExtUtils::MakeMaker 0
+  IPC-Run3-0.046
+    pathname: R/RJ/RJBS/IPC-Run3-0.046.tar.gz
+    provides:
+      IPC::Run3 0.046
+    requirements:
+      ExtUtils::MakeMaker 0
+      Test::More 0.31
+      Time::HiRes 0
   JSON-2.59
     pathname: M/MA/MAKAMAKA/JSON-2.59.tar.gz
     provides:
@@ -789,6 +858,18 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 6.52
       Test::More 0.82
       perl 5.00503
+  Log-Minimal-0.16
+    pathname: K/KA/KAZEBURO/Log-Minimal-0.16.tar.gz
+    provides:
+      Log::Minimal 0.16
+    requirements:
+      CPAN::Meta 0
+      CPAN::Meta::Prereqs 0
+      Data::Dumper 0
+      ExtUtils::CBuilder 0
+      Module::Build 0.38
+      Scalar::Util 0
+      Term::ANSIColor 0
   MRO-Compat-0.12
     pathname: B/BO/BOBTFISH/MRO-Compat-0.12.tar.gz
     provides:
@@ -1049,12 +1130,39 @@ DISTRIBUTIONS
       Digest::SHA1 0
       Module::Build::Tiny 0.023
       Plack 0.9910
+  Probe-Perl-0.03
+    pathname: K/KW/KWILLIAMS/Probe-Perl-0.03.tar.gz
+    provides:
+      Probe::Perl 0.03
+    requirements:
+      Config 0
+      ExtUtils::MakeMaker 6.30
+      File::Spec 0
+      strict 0
   Proc-Wait3-0.04
     pathname: C/CT/CTILMES/Proc-Wait3-0.04.tar.gz
     provides:
       Proc::Wait3 0.04
     requirements:
       ExtUtils::MakeMaker 0
+  Proclet-0.31
+    pathname: K/KA/KAZEBURO/Proclet-0.31.tar.gz
+    provides:
+      Proclet 0.31
+      Proclet::Declare undef
+    requirements:
+      CPAN::Meta 0
+      CPAN::Meta::Prereqs 0
+      Data::Validator 0
+      File::Which 1.09
+      Getopt::Compact::WithCmd 0.20
+      Log::Minimal 0.14
+      Module::Build 0.38
+      Mouse 0
+      Parallel::Prefork 0.13
+      Term::ANSIColor 0
+      YAML::XS 0.38
+      parent 0
   Redis-1.961
     pathname: M/ME/MELO/Redis-1.961.tar.gz
     provides:
@@ -1300,6 +1408,18 @@ DISTRIBUTIONS
       Test::More 0.47
       Test::Tester 0.107
       perl 5.006
+  Test-Output-1.02
+    pathname: B/BD/BDFOY/Test-Output-1.02.tar.gz
+    provides:
+      Test::Output 1.02
+    requirements:
+      Capture::Tiny 0.17
+      ExtUtils::MakeMaker 0
+      File::Temp 0.17
+      Sub::Exporter 0
+      Test::More 0
+      Test::Tester 0.107
+      perl 5.006
   Test-RedisServer-0.12
     pathname: T/TY/TYPESTER/Test-RedisServer-0.12.tar.gz
     provides:
@@ -1323,6 +1443,19 @@ DISTRIBUTIONS
       Test::Builder::Module 0
       Test::More 0.61
       perl 5.008_001
+  Test-Script-1.07
+    pathname: A/AD/ADAMK/Test-Script-1.07.tar.gz
+    provides:
+      Test::Script 1.07
+    requirements:
+      ExtUtils::MakeMaker 6.42
+      File::Spec 0.80
+      IPC::Run3 0.034
+      Probe::Perl 0.01
+      Test::Builder 0.32
+      Test::Builder::Tester 1.02
+      Test::More 0.62
+      blib 0
   Test-SharedFork-0.21
     pathname: T/TO/TOKUHIROM/Test-SharedFork-0.21.tar.gz
     provides:
@@ -1405,6 +1538,27 @@ DISTRIBUTIONS
       Test::More 0
       Tree::DAG_Node 1.02
       perl 5.006
+  Text-Aligner-0.07
+    pathname: A/AN/ANNO/Text-Aligner-0.07.tar.gz
+    provides:
+      Text::Aligner 0.07
+      Text::Aligner::Auto 0.07
+      Text::Aligner::MaxKeeper 0.07
+    requirements:
+      ExtUtils::MakeMaker 0
+      Term::ANSIColor 2.01
+      Test::More 0
+  Text-Table-1.127
+    pathname: S/SH/SHLOMIF/Text-Table-1.127.tar.gz
+    provides:
+      Text::Table 1.127
+    requirements:
+      List::Util 0
+      Module::Build 0.36
+      Test::More 0
+      Text::Aligner 0.05
+      strict 0
+      warnings 0
   Text-Xslate-2.0009
     pathname: G/GF/GFUJI/Text-Xslate-2.0009.tar.gz
     provides:
@@ -1567,6 +1721,15 @@ DISTRIBUTIONS
       ExtUtils::MakeMaker 0
       Fcntl 0
       URI 1.10
+      perl 5.008001
+  YAML-LibYAML-0.41
+    pathname: I/IN/INGY/YAML-LibYAML-0.41.tar.gz
+    provides:
+      YAML::LibYAML 0.18
+      YAML::XS 0.41
+      YAML::XS::LibYAML undef
+    requirements:
+      ExtUtils::MakeMaker 6.59
       perl 5.008001
   common-sense-3.72
     pathname: M/ML/MLEHMANN/common-sense-3.72.tar.gz
