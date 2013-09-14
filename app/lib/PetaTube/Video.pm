@@ -6,23 +6,14 @@ use URI;
 use Coro;
 use Coro::Select;
 use Encode;
+use List::Util qw/shuffle/;
 use Amon2::Declare;
 
 sub extract_video_ids {
     my $class = shift;
     my ($url) = @_;
 
-    my $result = c->redis->get_callback('video_ids', $url => sub {
-        my $res = c->youtube->extract_video_ids($url);
-        if ( $url =~ m{^http://matome\.naver\.jp} ) {
-             my $video_ids = $class->_extract_id_naver_matome_paging($url);
-             push @{ $res->{ids} }, @$video_ids;
-        }
-        $res->{thumbnailVideoId} = $res->{ids}->[ int rand @{ $res->{ids} }];
-        $res->{videoCount} = scalar @{$res->{ids}};
-        $res->{title} = decode_utf8($res->{title});
-        return $res;
-    }, 60 * 60);
+    my $result = $class->fetch_video_ids($url);
     c->redis->incr_score("view_score" => $url);
     return $result;
 }
@@ -36,12 +27,31 @@ sub fetch {
     }, 60 * 60);
 }
 
+sub fetch_video_ids {
+    my $class = shift;
+    my ($url) = @_;
+    c->redis->get_callback('video_ids', $url => sub {
+        my $res = c->youtube->extract_video_ids($url);
+        if ( $url =~ m{^http://matome\.naver\.jp} ) {
+             my $video_ids = $class->_extract_id_naver_matome_paging($url);
+             push @{ $res->{ids} }, @$video_ids;
+        }
+        $res->{thumbnailVideoId} = $res->{ids}->[ int rand @{ $res->{ids} }];
+        $res->{videoCount} = scalar @{$res->{ids}};
+        $res->{title} = decode_utf8($res->{title});
+        return $res;
+    }, 60 * 60);
+}
+
 sub popular {
     my $class = shift;
+    my ($limit) = @_;
     my $urls = c->redis->rank_range("view_score", 1, 20);
+    my @shuffled_urls = shuffle @$urls;
     my $res = [];
-    for my $url (@$urls) {
-        my $info = c->redis->get('video_ids' => $url);
+    for my $i (1..5) {
+        my $url = $shuffled_urls[$i];
+        my $info = $class->fetch_video_ids($url);
         $info->{url} = $url;
         push @$res, $info;
     }
@@ -103,6 +113,10 @@ __END__
 =item my $video = PetaTube::Video->fetch($video_id);
 
     fetch youtube's video info
+
+=item my $video = PetaTube::Video->fetch_video_ids($url);
+
+    fetch extract video ids by url
 
 =item my $result = PetaTube::Video->popular
 

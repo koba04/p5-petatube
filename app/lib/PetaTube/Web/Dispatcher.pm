@@ -44,7 +44,7 @@ get '/videos/' => sub {
 
 get '/popular' => sub {
     my $c = shift;
-    my $popular_pages = PetaTube::Video->popular;
+    my $popular_pages = PetaTube::Video->popular(5);
     return $c->render_json($popular_pages);
 };
 
