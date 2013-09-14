@@ -28,13 +28,6 @@ npm install
 npm install -g bower
 bower install
 
-# watch
-grunt watch:(all|cofee|scss)
-  or
-# manualy
-grunt
-```
-
 ### carton
 
 ````
@@ -43,11 +36,11 @@ cd p5-petatube/app
 carton install
 ```
 
-### plackup
+### start develop (by Proclet)
 
 ```
 cd p5-petatube/app
-carton exec plackup (-r)
+carton exec perl start_develop
 ```
 
 enjoy!
