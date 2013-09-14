@@ -86,7 +86,7 @@ directory "/var/log/petatube" do
 end
 
 cookbook_file "/etc/nginx/conf.d/petatube.conf" do
-  source "supervisor/petatube.conf"
+  source "nginx/petatube.conf"
   action :create
 end
 
