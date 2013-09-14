@@ -1,5 +1,5 @@
 #!/bin/sh
-cd /home/vagrant/petatube/app
+cd /home/koba04/petatube/app
 exec 2>&1
 exec /home/koba04/perl5/perlbrew/perls/perl-5.18.1/bin/carton exec -- start_server --port=9001 \
 -- plackup -s Starlet -E production \
