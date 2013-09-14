@@ -6,9 +6,9 @@ env(
   PLACK_ENV => 'development',
   LM_COLOR => 1,
 );
-service('web', 'carton exec plackup -r app.psgi');
+service('app', 'carton exec plackup -r app.psgi');
 service('grunt', 'grunt watch');
-service('redis', 'redis-server');
+service('redis', 'redis-server ../server/development/proclet/redis.conf');
 
 color;
 run;

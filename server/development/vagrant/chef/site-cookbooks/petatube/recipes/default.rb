@@ -85,18 +85,23 @@ directory "/var/log/petatube" do
   action :create
 end
 
+cookbook_file "/etc/nginx/conf.d/petatube.conf" do
+  source "supervisor/petatube.conf"
+  action :create
+end
+
 cookbook_file "/etc/supervisor/conf.d/nginx.conf" do
-  source "nginx.conf"
+  source "supervisor/nginx.conf"
   action :create
 end
 
 cookbook_file "/etc/supervisor/conf.d/petatube.conf" do
-  source "petatube.conf"
+  source "supervisor/petatube.conf"
   action :create
 end
 
 cookbook_file "/etc/supervisor/conf.d/redis.conf" do
-  source "redis.conf"
+  source "supervisor/redis.conf"
   action :create
 end
 
