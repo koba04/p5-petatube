@@ -6,4 +6,4 @@ exec /home/koba04/perl5/perlbrew/perls/perl-5.18.1/bin/carton exec -- start_serv
 --max-workers=3 \
 --max-keepalive-reqs=1 \
 --max-reqs-per-child=10000 \
-/home/koba04/work/p5-petatube/app/app.psgi
+/home/koba04/petatube/app/app.psgi
