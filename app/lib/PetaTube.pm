@@ -13,7 +13,7 @@ use PetaTube::Redis;
 sub redis {
     my $self = shift;
     return $self->{__redis} //= PetaTube::Redis->new(
-        redis => Redis->new($self->config->{redis}),
+        redis => Redis->new(%{$self->config->{redis}}),
     );
 }
 
