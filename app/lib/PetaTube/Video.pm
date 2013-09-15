@@ -40,7 +40,7 @@ sub fetch_video_ids {
         $res->{videoCount} = scalar @{$res->{ids}};
         $res->{title} = decode_utf8($res->{title});
         return $res;
-    }, 60 * 60);
+    }, 60 * 60 * 24 * 7);
 }
 
 sub popular {
