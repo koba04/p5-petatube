@@ -9,6 +9,10 @@
 
 version = node[:version]
 
+package "make" do
+  action :install
+end
+
 remote_file "/tmp/redis-#{version}.tar.gz" do
   source "http://download.redis.io/releases/redis-#{version}.tar.gz"
   not_if { system("/usr/local/bin/redis-server -v") }
