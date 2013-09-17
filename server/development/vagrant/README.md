@@ -12,7 +12,6 @@
 
 ## vagrant
 
-    % vagrant init precise64 http://files.vagrantup.com/precise64.box
     % vagrant up
     % vagrant ssh-config --host petatube >> ~/.ssh/config
 
