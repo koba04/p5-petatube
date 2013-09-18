@@ -14,7 +14,6 @@ bash "git clone" do
   code <<-EOC
     git clone https://github.com/koba04/p5-petatube.git petatube
     cd petatube
-    git checkout -b renewal origin/renewal
     git submodule init
     git submodule update
   EOC
