@@ -48,7 +48,7 @@ bash "install gems" do
   EOC
 end
 
-bash "set up perl module" do
+bash "install CPAN modules" do
   user node[:user][:name]
   cwd  node[:user][:home]
   environment "HOME" => node[:user][:home]
