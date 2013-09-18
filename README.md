@@ -16,6 +16,13 @@ http://redis.io/download
 
 TBA
 
+### git submodule
+
+```
+git submodule init
+git submodule update
+```
+
 ### setup compass and grunt
 
 ```
