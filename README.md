@@ -8,7 +8,7 @@ https://github.com/koba04/p5-petatube/blob/master/server/development/vagrant/REA
 
 ## develop local
 
-### install Redis
+### install Redis (2.6.16)
 
 http://redis.io/download
 
