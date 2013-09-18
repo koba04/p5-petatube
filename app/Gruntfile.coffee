@@ -21,13 +21,6 @@ module.exports = (grunt) ->
         ]
         tasks: ["css"]
         options: "<%= watch.coffee.options %>"
-      all:
-        files: [
-          "<%= watch.coffee.files %>"
-          "<%= watch.scss.files %>"
-        ]
-        tasks: ["js", "css"]
-        options: "<%= watch.coffee.options %>"
 
     coffee:
       compile:
