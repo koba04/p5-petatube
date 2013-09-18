@@ -46,7 +46,10 @@ sub fetch_video_ids {
 sub popular {
     my $class = shift;
     my ($limit) = @_;
+
     my $urls = c->redis->rank_range("view_score", 1, 20);
+    return [] unless @$urls;
+
     my @shuffled_urls = shuffle @$urls;
     my $res = [];
     for my $i (1..5) {
